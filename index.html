@@ -44,7 +44,7 @@
                 <span class="text-red-500 font-bold">Apakah Anda yang selanjutnya?</span>
             </p>
 
-            <!-- COUNTDOWN TIMER (Efek Psikologis) -->
+            <!-- COUNTDOWN TIMER -->
             <div class="flex justify-center gap-3 w-full mb-4">
                 <div class="bg-slate-800 border border-slate-600 rounded-lg p-2 w-16 text-center">
                     <span id="hours" class="block text-2xl font-black text-white">00</span>
@@ -64,7 +64,7 @@
             <p class="text-[10px] text-yellow-500 font-bold italic">*Penawaran Spesial Berakhir Saat Waktu Habis</p>
         </div>
 
-        <!-- PROGRESS BAR KUOTA (Efek Scarcity/Langka) -->
+        <!-- PROGRESS BAR KUOTA -->
         <div class="px-6 py-5 bg-red-50 border-b border-red-100">
             <div class="flex justify-between items-end mb-2">
                 <span class="text-xs font-bold text-red-700 uppercase">Status Kuota VVIP:</span>
@@ -76,9 +76,9 @@
             <p class="text-[11px] text-slate-600 text-center font-semibold">Hanya tersisa <span class="text-red-600 font-bold text-sm">3 SLOT</span> pendaftaran hari ini!</p>
         </div>
 
-        <!-- HERO IMAGE -->
+        <!-- HERO IMAGE BARU -->
         <div class="w-full px-6 py-6">
-            <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Orang Sukses" class="rounded-2xl shadow-xl w-full h-auto object-cover max-h-64 mb-6 border border-slate-200">
+            <img src="hero.png" alt="NPA Smart System & 3iReborn" class="rounded-2xl shadow-xl w-full h-auto object-cover max-h-64 mb-6 border-2 border-yellow-500">
             
             <h2 class="text-lg font-black text-slate-800 mb-3 text-center leading-snug">Apa Yang Anda Dapatkan Jika Mengambil Keputusan SEKARANG?</h2>
             
@@ -115,23 +115,20 @@
 
     </div>
 
-    <!-- FLOATING BOTTOM BUTTON (Sticky FOMO) -->
+    <!-- FLOATING BOTTOM BUTTON -->
     <div class="fixed bottom-0 w-full max-w-md bg-white border-t border-slate-200 shadow-[0_-10px_20px_rgba(0,0,0,0.1)] p-4 z-50 flex justify-between items-center gap-3">
         <div class="text-left">
             <p class="text-[10px] font-bold text-red-600 uppercase">Waktu Hampir Habis!</p>
             <p class="text-xs font-black text-slate-800">SISA 3 SLOT LAGI</p>
         </div>
-        <a href="https://wa.me/6281234567890?text=Halo%20Sugiarto%20Kurniawan%20,%20saya%20tidak%20mau%20ketinggalan.%20Daftar%20Online%20sekarang!" class="flex-grow bg-red-600 text-white font-black py-3 px-4 rounded-lg text-center text-xs shadow-lg uppercase hover:bg-red-700 active:scale-95 transition-all">
+        <a href="https://wa.me/6285218453131?text=Halo%20Sugiarto%20Kurniawan%20,%20saya%20tidak%20mau%20ketinggalan.%20Daftar%20Online%20sekarang!" class="flex-grow bg-red-600 text-white font-black py-3 px-4 rounded-lg text-center text-xs shadow-lg uppercase hover:bg-red-700 active:scale-95 transition-all">
             KLAIM SLOT SAYA 🔥
         </a>
     </div>
 
-    <!-- ================================================== -->
-    <!-- SCRIPT TIMER FOMO (BOHONGAN/EVERGREEN)             -->
-    <!-- ================================================== -->
+    <!-- SCRIPT TIMER FOMO -->
     <script>
-        // Mengatur timer countdown 15 Menit yang terus berulang kalau di-refresh
-        let time = 15 * 60; // 15 menit dalam detik
+        let time = 15 * 60;
         const minutesEl = document.getElementById('minutes');
         const secondsEl = document.getElementById('seconds');
 
@@ -146,25 +143,19 @@
         }, 1000);
     </script>
 
-    <!-- ================================================== -->
-    <!-- SCRIPT SAPU JAGAT WEB REPLIKA (AUTO REPLACE)       -->
-    <!-- ================================================== -->
+    <!-- SCRIPT SAPU JAGAT WEB REPLIKA -->
     <script>
         (function() {
             const urlParams = new URLSearchParams(window.location.search);
             const namaMitra = urlParams.get('nama');
             const waMitra = urlParams.get('wa');
 
-            // WAJIB ADA NAMA & WA AGAR SISTEM BERJALAN
             if (namaMitra && waMitra) {
-                
-                // 1. MUNCULKAN BADGE MERAH
                 const badge = document.createElement('div');
                 badge.innerHTML = 'Di Presentasikan: ' + namaMitra;
                 badge.style.cssText = 'position:fixed; top:0; left:50%; transform:translateX(-50%); background-color:#ef4444; color:white; padding:8px 24px; border-bottom-left-radius:12px; border-bottom-right-radius:12px; font-weight:900; z-index:99999; box-shadow:0 4px 10px rgba(0,0,0,0.3); font-size:14px; text-align:center; width:max-content; max-width:90%; font-family:sans-serif; border:2px solid white; border-top:none; text-transform:uppercase;';
                 document.body.appendChild(badge);
 
-                // 2. GANTI NAMA JENDERAL JADI NAMA MITRA
                 function replaceText(node, search, replace) {
                     if (node.nodeType === 3) { 
                         node.nodeValue = node.nodeValue.replace(new RegExp(search, 'gi'), replace);
@@ -174,7 +165,6 @@
                 }
                 replaceText(document.body, "Sugiarto Kurniawan", namaMitra);
 
-                // 3. BAJAK SEMUA LINK WA & WHATSFORM
                 const encodedNama = encodeURIComponent(namaMitra);
                 const pesanDaftar = 'Halo ' + encodedNama + ', saya mau Daftar Online sekarang.';
                 const linkWA_Baru = 'https://api.whatsapp.com/send?phone=' + waMitra + '&text=' + pesanDaftar;
@@ -182,7 +172,6 @@
                 const semuaLink = document.querySelectorAll('a');
                 semuaLink.forEach(link => {
                     let hrefSaatIni = link.getAttribute('href') || '';
-                    
                     if (hrefSaatIni.includes('wa.me') || hrefSaatIni.includes('api.whatsapp.com') || hrefSaatIni.includes('forms.gle') || hrefSaatIni.includes('whatsform.com')) {
                         link.setAttribute('href', linkWA_Baru);
                         link.setAttribute('target', '_blank'); 
