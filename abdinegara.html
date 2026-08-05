@@ -65,5 +65,56 @@
             <path d="M12.01 2.002c-5.522 0-9.998 4.477-9.998 9.998 0 1.764.458 3.482 1.328 5L1.875 22l5.127-1.465c1.47.828 3.143 1.264 4.908 1.264 5.522 0 10.002-4.477 10.002-9.998 0-5.52-4.48-9.999-10.002-9.999zm0 18.232c-1.492 0-2.936-.386-4.218-1.118l-.302-.178-3.134.896.84-3.056-.196-.312A8.204 8.204 0 013.774 12c0-4.545 3.695-8.24 8.236-8.24 4.542 0 8.24 3.695 8.24 8.24 0 4.544-3.698 8.234-8.24 8.234zm4.526-6.182c-.248-.124-1.468-.724-1.696-.808-.228-.082-.394-.124-.56.124-.166.248-.642.808-.788.972-.144.166-.29.186-.538.062-.248-.124-1.048-.384-1.996-1.184-.738-.622-1.236-1.39-1.38-1.638-.144-.248-.016-.382.108-.506.112-.11.248-.29.372-.434.124-.144.166-.248.248-.414.082-.166.042-.31-.02-.434-.062-.124-.56-1.35-.768-1.848-.2-.486-.404-.42-.56-.426-.144-.006-.31-.008-.476-.008-.166 0-.436.062-.664.31-.228.248-.87.854-1.218.87-1.218 0-.364.372-1.034 1.136-1.57.766-.538 2.37-1.31 3.256-1.59.888-.28 1.178-.228 1.634-.144.456.082 1.468.6 1.676 1.18.206.58.206 1.076.144 1.18-.062.104-.228.166-.476.29z"/>
         </svg>
     </a>
+        <!-- ================================================== -->
+    <!-- SCRIPT SAPU JAGAT WEB REPLIKA (AUTO REPLACE)       -->
+    <!-- ================================================== -->
+    <script>
+        (function() {
+            // 1. Ambil Data dari Link
+            const urlParams = new URLSearchParams(window.location.search);
+            const namaMitra = urlParams.get('nama');
+            const waMitra = urlParams.get('wa');
+
+            // Jika ada parameter, maka jalankan "Sihir" Web Replika
+            if (namaMitra && waMitra) {
+                
+                // --- A. BIKIN BADGE MERAH MELAYANG DI ATAS ---
+                const badge = document.createElement('div');
+                badge.innerHTML = 'Di Presentasikan: ' + namaMitra;
+                badge.style.cssText = 'position:fixed; top:0; left:50%; transform:translateX(-50%); background-color:#ef4444; color:white; padding:8px 24px; border-bottom-left-radius:12px; border-bottom-right-radius:12px; font-weight:900; z-index:99999; box-shadow:0 4px 10px rgba(0,0,0,0.3); font-size:14px; text-align:center; width:max-content; max-width:90%; font-family:sans-serif; border:2px solid white; border-top:none; text-transform:uppercase;';
+                document.body.appendChild(badge);
+
+                // --- B. GANTI SEMUA TULISAN "Sugiarto Kurniawan" JADI NAMA MITRA ---
+                function replaceText(node, search, replace) {
+                    if (node.nodeType === 3) { // Teks
+                        node.nodeValue = node.nodeValue.replace(new RegExp(search, 'gi'), replace);
+                    } else if (node.nodeType === 1 && node.nodeName !== "SCRIPT" && node.nodeName !== "STYLE") {
+                        node.childNodes.forEach(child => replaceText(child, search, replace));
+                    }
+                }
+                // Ganti nama default di seluruh halaman
+                replaceText(document.body, "Sugiarto Kurniawan", namaMitra);
+
+                // --- C. BAJAK SEMUA TOMBOL WA & WHATSFORM ---
+                const encodedNama = encodeURIComponent(namaMitra);
+                const pesanDaftar = 'Halo ' + encodedNama + ', saya mau Daftar Online sekarang.';
+                const linkWA_Baru = 'https://api.whatsapp.com/send?phone=' + waMitra + '&text=' + pesanDaftar;
+
+                const semuaLink = document.querySelectorAll('a');
+                semuaLink.forEach(link => {
+                    let hrefSaatIni = link.getAttribute('href') || '';
+                    
+                    // Kalau ketemu link wa.me, api.whatsapp, forms.gle, atau whatsform.com
+                    if (hrefSaatIni.includes('wa.me') || hrefSaatIni.includes('api.whatsapp.com') || hrefSaatIni.includes('forms.gle') || hrefSaatIni.includes('whatsform.com')) {
+                        // Tembak ganti dengan Link WA Mitra
+                        link.setAttribute('href', linkWA_Baru);
+                        // Biar kalau diklik langsung buka tab baru ke WA
+                        link.setAttribute('target', '_blank'); 
+                    }
+                });
+            }
+        })();
+                </script>
+    
 </body>
 </html>
