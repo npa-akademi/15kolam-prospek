@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesin Builder 15 Kolam Prospek - NPA</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #111;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #d4af37;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+        h2 {
+            text-align: center;
+            color: #d4af37;
+            margin-bottom: 5px;
+        }
+        p.subtitle {
+            text-align: center;
+            color: #f3e5ab;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #d4af37;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            background: #222;
+            color: #fff;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .btn-generate {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #d4af37, #b58500);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-generate:hover {
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+        #result-box {
+            display: none;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed #444;
+        }
+        textarea {
+            width: 100%;
+            height: 350px;
+            background: #222;
+            color: #00ff00; /* Warna teks ala hacker/coding */
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 13px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+        .btn-copy {
+            width: 100%;
+            padding: 12px;
+            background: #25d366;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>⚙️ MESIN BUILDER 15 KOLAM PROSPEK ⚙️</h2>
+    <p class="subtitle">Generate Web Replika Khusus Mitra NPA Smart System</p>
+
+    <div class="form-group">
+        <label>👤 Nama Mitra (Contoh: Tini)</label>
+        <input type="text" id="inputNama" placeholder="Masukkan Nama Mitra...">
+    </div>
+    
+    <div class="form-group">
+        <label>📱 Nomor WA Mitra (Awali dengan 62)</label>
+        <input type="text" id="inputWA" placeholder="Contoh: 6281586197772">
+    </div>
+
+    <button class="btn-generate" onclick="generateLinks()">🚀 GENERATE LINK REPLIKA</button>
+
+    <div id="result-box">
+        <label>✅ BERHASIL! Copy teks di bawah ini dan berikan ke Mitra:</label>
+        <textarea id="outputLinks" readonly></textarea>
+        <button class="btn-copy" onclick="copyToClipboard()">📋 COPY SEMUA LINK</button>
+    </div>
+</div>
+
+<script>
+    const baseUrlList = [
+        { name: "1. Kolam Utama", url: "https://npa-akademi.github.io/15kolam-prospek/" },
+        { name: "2. Kolam Pedagang", url: "https://npa-akademi.github.io/15kolam-prospek/pedagang.html" },
+        { name: "3. Kolam Karyawan", url: "https://npa-akademi.github.io/15kolam-prospek/karyawan.html" },
+        { name: "4. Kolam Ojol", url: "https://npa-akademi.github.io/15kolam-prospek/ojol.html" },
+        { name: "5. Kolam Guru", url: "https://npa-akademi.github.io/15kolam-prospek/guru.html" },
+        { name: "6. Kolam Pensiun", url: "https://npa-akademi.github.io/15kolam-prospek/pensiun.html" },
+        { name: "7. Kolam Disabilitas", url: "https://npa-akademi.github.io/15kolam-prospek/disabilitas.html" },
+        { name: "8. Kolam UMKM", url: "https://npa-akademi.github.io/15kolam-prospek/umkm.html" },
+        { name: "9. Kolam Gen-Z", url: "https://npa-akademi.github.io/15kolam-prospek/genz.html" },
+        { name: "10. Kolam Freelance", url: "https://npa-akademi.github.io/15kolam-prospek/freelance.html" },
+        { name: "11. Kolam Abdi Negara", url: "https://npa-akademi.github.io/15kolam-prospek/abdinegara.html" },
+        { name: "12. Kolam TKW", url: "https://npa-akademi.github.io/15kolam-prospek/tkw.html" },
+        { name: "13. Kolam Mahasiswa", url: "https://npa-akademi.github.io/15kolam-prospek/mahasiswa.html" },
+        { name: "14. Kolam Pengusaha", url: "https://npa-akademi.github.io/15kolam-prospek/pengusaha.html" },
+        { name: "15. Kolam Biaya Sekolah", url: "https://npa-akademi.github.io/15kolam-prospek/biayasekolah.html" }
+    ];
+
+    function generateLinks() {
+        let nama = document.getElementById('inputNama').value.trim();
+        let wa = document.getElementById('inputWA').value.trim();
+
+        if (nama === "" || wa === "") {
+            alert("Ndan, Nama dan WA tidak boleh kosong!");
+            return;
+        }
+
+        // Bersihkan spasi atau karakter aneh di WA
+        wa = wa.replace(/\D/g,'');
+        if(wa.startsWith('0')) {
+            wa = '62' + wa.substring(1);
+        }
+
+        let encodedNama = encodeURIComponent(nama);
+        let resultText = `Halo Kak ${nama}! 🎉\nIni adalah 15 Link Kolam Prospek (Web Replika) milik Anda.\nSilakan sebarkan link ini ke target prospek yang sesuai:\n\n`;
+
+        baseUrlList.forEach(item => {
+            // Membentuk URL Parameter
+            let fullUrl = `${item.url}?nama=${encodedNama}&wa=${wa}`;
+            resultText += `*${item.name}*\n🔗 ${fullUrl}\n\n`;
+        });
+
+        resultText += `Jika ada prospek yang klik "Daftar Online", akan otomatis masuk ke WA Anda (${wa}).\nSemangat Closing! 🚀`;
+
+        document.getElementById('outputLinks').value = resultText;
+        document.getElementById('result-box').style.display = 'block';
+    }
+
+    function copyToClipboard() {
+        let copyText = document.getElementById("outputLinks");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+        alert("Siap! Semua Link berhasil di-copy, Jenderal! Tinggal paste ke WA Mitra.");
+    }
+</script>
+
+</body>
+</html>
