@@ -68,53 +68,8 @@
         <!-- ================================================== -->
     <!-- SCRIPT SAPU JAGAT WEB REPLIKA (AUTO REPLACE)       -->
     <!-- ================================================== -->
-    <script>
-        (function() {
-            // 1. Ambil Data dari Link
-            const urlParams = new URLSearchParams(window.location.search);
-            const namaMitra = urlParams.get('nama');
-            const waMitra = urlParams.get('wa');
-
-            // Jika ada parameter, maka jalankan "Sihir" Web Replika
-            if (namaMitra && waMitra) {
-                
-                // --- A. BIKIN BADGE MERAH MELAYANG DI ATAS ---
-                const badge = document.createElement('div');
-                badge.innerHTML = 'Di Presentasikan: ' + namaMitra;
-                badge.style.cssText = 'position:fixed; top:0; left:50%; transform:translateX(-50%); background-color:#ef4444; color:white; padding:8px 24px; border-bottom-left-radius:12px; border-bottom-right-radius:12px; font-weight:900; z-index:99999; box-shadow:0 4px 10px rgba(0,0,0,0.3); font-size:14px; text-align:center; width:max-content; max-width:90%; font-family:sans-serif; border:2px solid white; border-top:none; text-transform:uppercase;';
-                document.body.appendChild(badge);
-
-                // --- B. GANTI SEMUA TULISAN "Sugiarto Kurniawan" JADI NAMA MITRA ---
-                function replaceText(node, search, replace) {
-                    if (node.nodeType === 3) { // Teks
-                        node.nodeValue = node.nodeValue.replace(new RegExp(search, 'gi'), replace);
-                    } else if (node.nodeType === 1 && node.nodeName !== "SCRIPT" && node.nodeName !== "STYLE") {
-                        node.childNodes.forEach(child => replaceText(child, search, replace));
-                    }
-                }
-                // Ganti nama default di seluruh halaman
-                replaceText(document.body, "Sugiarto Kurniawan", namaMitra);
-
-                // --- C. BAJAK SEMUA TOMBOL WA & WHATSFORM ---
-                const encodedNama = encodeURIComponent(namaMitra);
-                const pesanDaftar = 'Halo ' + encodedNama + ', saya mau Daftar Online sekarang.';
-                const linkWA_Baru = 'https://api.whatsapp.com/send?phone=' + waMitra + '&text=' + pesanDaftar;
-
-                const semuaLink = document.querySelectorAll('a');
-                semuaLink.forEach(link => {
-                    let hrefSaatIni = link.getAttribute('href') || '';
-                    
-                    // Kalau ketemu link wa.me, api.whatsapp, forms.gle, atau whatsform.com
-                    if (hrefSaatIni.includes('wa.me') || hrefSaatIni.includes('api.whatsapp.com') || hrefSaatIni.includes('forms.gle') || hrefSaatIni.includes('whatsform.com')) {
-                        // Tembak ganti dengan Link WA Mitra
-                        link.setAttribute('href', linkWA_Baru);
-                        // Biar kalau diklik langsung buka tab baru ke WA
-                        link.setAttribute('target', '_blank'); 
-                    }
-                });
-            }
-        })();
-                </script>
     
+    <script src="gembok.js"></script>
+
 </body>
 </html>
