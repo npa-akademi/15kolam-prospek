@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NPA Follow-Up Master V3.2 - 16 Kolam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #0f172a; color: white; }
+        select { background-color: #1e293b !important; border: 1px solid #475569 !important; color: white !important; }
+        select:focus { border-color: #3b82f6 !important; outline: none; }
+    </style>
+</head>
+<body class="min-h-screen pb-20 bg-slate-950">
+
+    <header class="bg-slate-900 border-b border-blue-500/20 p-4 shadow-xl sticky top-0 z-50">
+        <div class="max-w-2xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 text-white px-2.5 py-1 rounded font-black text-xs shadow-md">NPA FOLLOW-UP</div>
+                <h1 class="font-bold text-sm sm:text-base tracking-tight text-white">Masterpiece CS</h1>
+            </div>
+            <div class="text-[10px] bg-slate-800 border border-blue-500/50 text-blue-400 px-2.5 py-1 rounded-full font-bold">16 Kolam Prospek!</div>
+        </div>
+    </header>
+
+    <main class="max-w-xl mx-auto p-4 sm:p-6 mt-4">
+        
+        <div class="text-center mb-6">
+            <h1 class="text-2xl sm:text-3xl font-black text-blue-400 tracking-wide mb-1">BANK SCRIPT 139</h1>
+            <p class="text-xs text-slate-400 font-semibold tracking-widest uppercase">Senjata Closing 16 Kolam Prospek</p>
+        </div>
+
+        <div class="bg-slate-900 p-5 sm:p-6 rounded-2xl shadow-2xl border border-slate-800 space-y-6">
+            
+            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 space-y-4">
+                <div>
+                    <label class="block text-xs font-black text-blue-400 uppercase tracking-wider mb-2">🎯 Pilih Target Kolam Prospek</label>
+                    <select id="pilihan-kolam" class="w-full rounded-xl p-3 text-sm focus:ring-2 focus:ring-blue-500 transition" onchange="tampilkanScript()">
+                        <option value="" disabled selected>-- Pilih Kolam Prospek --</option>
+                        <option value="emak">1. Emak-Emak (Bisnis dari Rumah)</option>
+                        <option value="pedagang">2. Pedagang Pasar (Passive Income)</option>
+                        <option value="karyawan">3. Karyawan (Persiapan Resign)</option>
+                        <option value="driver">4. Driver Online (Stop Narik)</option>
+                        <option value="guru">5. Guru (Income Tambahan)</option>
+                        <option value="pensiun">6. Pensiunan (Masa Tua Tenang)</option>
+                        <option value="disabilitas">7. Disabilitas (Mandiri Finansial)</option>
+                        <option value="umkm">8. UMKM (Diversifikasi Aset)</option>
+                        <option value="genz">9. Gen Z (Investasi Muda)</option>
+                        <option value="freelancer">10. Freelancer (Income Stabil)</option>
+                        <option value="abdi_negara">11. Abdi Negara/TNI/Polri (Purna Tugas)</option>
+                        <option value="tkw">12. TKW / PMI (Aset Pulang Kampung)</option>
+                        <option value="mahasiswa">13. Mahasiswa (Biaya Kuliah Mandiri)</option>
+                        <option value="pengusaha">14. Pengusaha Besar (Scale-Up Aset)</option>
+                        <option value="sekolah">15. Biaya Sekolah (Tabungan Pendidikan)</option>
+                        <option value="properti">16. Praktisi Properti (Aset Digital)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="script-container" class="hidden space-y-5">
+                
+                <div class="bg-slate-950 p-4 rounded-xl border-l-4 border-emerald-500 shadow-inner">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest block">1. Auto-Reply (Pesan Pertama)</span>
+                        <button onclick="salinTeks('teks-autoreply')" class="bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-bold py-1 px-3 rounded shadow transition">Salin</button>
+                    </div>
+                    <p class="text-[10px] text-slate-500 mb-2 italic">Gunakan ini di WhatsAuto saat prospek baru masuk.</p>
+                    <textarea id="teks-autoreply" class="w-full h-32 bg-slate-900 border border-slate-700 rounded-lg text-xs p-3 text-slate-300 leading-relaxed" readonly></textarea>
+                </div>
+
+                <div class="bg-slate-950 p-4 rounded-xl border-l-4 border-amber-500 shadow-inner">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest block">2. Follow-Up H+1 (Tanya Kabar)</span>
+                        <button onclick="salinTeks('teks-h1')" class="bg-amber-600 hover:bg-amber-500 text-white text-[10px] font-bold py-1 px-3 rounded shadow transition">Salin</button>
+                    </div>
+                    <p class="text-[10px] text-slate-500 mb-2 italic">Kirim 1 hari setelah mereka baca Landing Page.</p>
+                    <textarea id="teks-h1" class="w-full h-32 bg-slate-900 border border-slate-700 rounded-lg text-xs p-3 text-slate-300 leading-relaxed" readonly></textarea>
+                </div>
+
+                <div class="bg-slate-950 p-4 rounded-xl border-l-4 border-pink-500 shadow-inner">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-pink-400 uppercase tracking-widest block">3. Follow-Up H+3 (Call to Action)</span>
+                        <button onclick="salinTeks('teks-h3')" class="bg-pink-600 hover:bg-pink-500 text-white text-[10px] font-bold py-1 px-3 rounded shadow transition">Salin</button>
+                    </div>
+                    <p class="text-[10px] text-slate-500 mb-2 italic">Kirim edukasi urgency jika prospek masih ragu/diam.</p>
+                    <textarea id="teks-h3" class="w-full h-32 bg-slate-900 border border-slate-700 rounded-lg text-xs p-3 text-slate-300 leading-relaxed" readonly></textarea>
+                </div>
+
+                <div class="bg-slate-950 p-4 rounded-xl border-l-4 border-red-500 shadow-inner">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-red-400 uppercase tracking-widest block">4. Follow-Up H+9 (Takeaway / Skip)</span>
+                        <button onclick="salinTeks('teks-h9')" class="bg-red-600 hover:bg-red-500 text-white text-[10px] font-bold py-1 px-3 rounded shadow transition">Salin</button>
+                    </div>
+                    <p class="text-[10px] text-slate-500 mb-2 italic">Tarik penawaran dengan halus. Buat mereka merasa rugi lalu SKIP.</p>
+                    <textarea id="teks-h9" class="w-full h-32 bg-slate-900 border border-slate-700 rounded-lg text-xs p-3 text-slate-300 leading-relaxed" readonly></textarea>
+                </div>
+
+                <div class="bg-slate-950 p-4 rounded-xl border-l-4 border-indigo-500 shadow-inner">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-bold text-indigo-400 uppercase tracking-widest block">5. Follow-Up H+30 (Jalur Langit)</span>
+                        <button onclick="salinTeks('teks-h30')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] font-bold py-1 px-3 rounded shadow transition">Salin</button>
+                    </div>
+                    <p class="text-[10px] text-slate-500 mb-2 italic">Sapaan alam semesta sebulan kemudian tanpa memaksa, berikan bukti.</p>
+                    <textarea id="teks-h30" class="w-full h-32 bg-slate-900 border border-slate-700 rounded-lg text-xs p-3 text-slate-300 leading-relaxed" readonly></textarea>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const databaseFollowUp = {
+            "emak": {
+                auto: "🤖 *Beep... Boop!* Halo Bunda, selamat datang!\n\nLuar biasa semangat Bunda untuk membantu ekonomi keluarga meski sibuk di rumah! 👩‍🍳✨\n\nPakde Sugiarto punya sistem *Pabrik Uang Dari Dapur* yang terbukti bisa nambah uang belanja. Silakan klik link ini untuk mempelajarinya Bunda:\n\n👉 [MASUKKAN LINK LP EMAK DI SINI]\n\nNanti kalau ada yang mau ditanyakan, balas chat ini ya Bun. Pakde siap bantu!",
+                h1: "Halo Bunda, gimana kabarnya hari ini? Masak apa nih buat keluarga? 😊\n\nBunda sudah sempat baca materi *Pabrik Uang Dari Dapur* yang kemarin Pakde kirim belum ya? Kalau ada bagian yang membingungkan, jangan sungkan tanya Pakde ya Bun. Pakde siap bimbing dari nol!",
+                h3: "Bunda, Pakde cuma mau ngingetin, waktu anak-anak bertumbuh itu cepat banget dan biaya pendidikan juga makin naik.\n\nMumpung sistem NPA ini lagi buka bimbingan khusus ibu rumah tangga, yuk kita mulai pelan-pelan bangun asetnya. Mau Pakde bantu pendaftarannya hari ini?",
+                h9: "Halo Bunda, karena kuota pendampingan khusus Ibu Rumah Tangga minggu ini sudah penuh dan Bunda belum ada konfirmasi, dengan berat hati seat-nya Pakde berikan ke Bunda yang lain dulu ya. 🙏\n\nSemoga Bunda dan keluarga selalu diberikan kesehatan dan rezeki yang melimpah. Sukses selalu, Bun!",
+                h30: "Halo Bunda! Udah lama kita gak ngobrol. Pakde cuma mau kasih info bahagia nih, alhamdulillah mitra-mitra ibu rumah tangga kita bulan ini banyak yang pecah telor dan tembus bonus pertamanya. 🎉\n\nKalau Bunda kapan-kapan mau mulai lagi dan siap bangun aset buat anak, pintu komunitas kita selalu terbuka ya Bun. Sehat selalu keluarganya! 🤲"
+            },
+            "pedagang": {
+                auto: "🤖 *Beep... Boop!* Halo Kang/Teh, selamat datang di NPA Smart System!\n\nLuar biasa semangat dagangnya! Tapi fisik kita ada batasnya. 🏪✨\n\nPakde Sugiarto punya rahasia *Bangun Keran Income Kedua* biar kalau warung lagi sepi, uang tetap masuk! Pelajari sistemnya di link ini:\n\n👉 [MASUKKAN LINK LP PEDAGANG DI SINI]\n\nPelajari sambil jaga warung. Kalau ada pertanyaan, langsung chat Pakde ya!",
+                h1: "Halo Kang/Teh, gimana dagangan hari ini? Semoga laris manis berkah ya! 🤲\n\nSudah sempat cek link materi yang Pakde kirim kemarin? Ingat lho, kita butuh jaring pengaman kalau tiba-tiba fisik nggak kuat jualan. Ada yang mau didiskusikan soal sistemnya?",
+                h3: "Kang/Teh, modal bangun aset di 3iReborn ini setara kayak nyisihin keuntungan jualan harian aja kok. Nggak berat sama sekali, tapi hasilnya bisa jadi sekoci penyelamat keluarga.\n\nJangan tunggu sampai fisik capek baru bertindak. Mau Pakde bantu registrasinya sekarang?",
+                h9: "Halo Kang/Teh, sepertinya Akang/Teteh sedang sangat sibuk fokus di warung ya. Karena slot bimbingan Pakde sangat terbatas, untuk sementara prioritas bimbingannya Pakde alihkan ke pedagang lain yang sudah konfirmasi duluan ya. 🙏\n\nLancar terus dan berkah selalu usahanya ya, Kang/Teh!",
+                h30: "Halo Kang/Teh! Semoga dagangannya makin rame dan berkah ya hari ini. ☕\n\nPakde baru aja dapet kabar baik dari teman-teman pedagang pasar di grup kita, alhamdulillah omzet mereka bulan ini aman karena ter-backup bonus dari 3iReborn. Kapan-kapan kalau Kang/Teh udah siap punya keran income kedua, hubungi Pakde lagi ya. Semangat terus! 🤲"
+            },
+            "karyawan": {
+                auto: "🤖 *Beep... Boop!* Halo rekan pekerja keras, selamat datang!\n\nSiklus berangkat gelap pulang gelap memang melelahkan. 👔✨\n\nPakde Sugiarto siapkan sistem *Pensiun Dini & Kebebasan Waktu* khusus buat Anda yang ingin punya backup income selain gaji. Cek detailnya di sini:\n\n👉 [MASUKKAN LINK LP KARYAWAN DI SINI]\n\nSilakan dibaca sepulang kerja nanti. Pakde tunggu diskusinya ya!",
+                h1: "Halo Mas/Mbak, semangat kerjanya hari ini! Hati-hati di jalan ya. 🚦\n\nSekadar *check-in*, sudah sempat buka materi yang Pakde kirim kemarin? Membangun aset ini *part-time* kok, cukup dikerjakan pas istirahat atau sepulang kerja. Ada yang mau ditanyakan?",
+                h3: "Mas/Mbak, gaji bulanan memang nyaman, tapi kita butuh aset yang aman dari risiko PHK atau perampingan perusahaan.\n\nMemulai 3iReborn ini adalah langkah cerdas untuk nyicil kebebasan waktu Anda. Yuk, amankan nama Anda hari ini mumpung gajian masih fresh! Mau dibantu daftarnya?",
+                h9: "Mas/Mbak, berhubung belum ada konfirmasi kelanjutan dan kuota mentoring *part-time* minggu ini sudah full, maka seat-nya Pakde berikan ke rekan karyawan lain yang sudah siap start duluan ya. 🙏\n\nSukses selalu untuk karirnya di kantor, semoga target-targetnya tercapai!",
+                h30: "Halo Mas/Mbak! Apa kabar kesibukan di kantor? Semoga selalu sehat ya.\n\nPakde cuma mau share kebahagiaan, alhamdulillah bulan ini ada rekan karyawan di tim kita yang akhirnya berani *resign* dengan tenang karena aset 3iReborn-nya udah menutupi gaji bulanannya. Luar biasa ya! Kalau nanti Mas/Mbak udah siap nyusul merdeka waktu, kabari Pakde ya. Sukses selalu! 🤲"
+            },
+            "driver": {
+                auto: "🤖 *Beep... Boop!* Halo Bang/Mbak, selamat datang!\n\nSemangat terus pejuang jalanan! Hati-hati di jalan ya. 🚗✨\n\nDaripada nunggu orderan cuma main game, pelajari rahasia Pakde *Ubah Setir Jadi Aset Masa Tua*. Cek di link ini:\n\n👉 [MASUKKAN LINK LP DRIVER DI SINI]\n\nPelajari santai aja pas lagi ngetem. Kalau mau ngobrol, balas chat ini ya!",
+                h1: "Halo Bang/Mbak, gimana orderan hari ini? Gacor kan? 🚀\n\nMateri yang kemarin Pakde kirim sudah sempat dibaca pas lagi ngetem belum? Ingat Bang, aspal itu keras, kita butuh proteksi asuransi buat keluarga kalau terjadi apa-apa. Ada yang mau ditanyain?",
+                h3: "Bang, nyisihin uang Rp 15 ribuan sehari dari hasil narik itu kecil banget, tapi kalau dimasukkan ke 3iReborn, bisa jadi dana pensiun ratusan juta lho!\n\nJangan biarkan uang hasil keringat habis gitu aja. Yuk mulai sisihkan buat masa depan. Mau Pakde bantu daftarkan sekarang?",
+                h9: "Bang/Mbak, karena sistem pendampingan Pakde kuotanya terbatas, untuk sementara Pakde fokus bimbing teman-teman driver yang udah transfer dan siap jalan duluan ya. 🙏\n\nHati-hati di jalan, semoga orderannya makin gacor dan keluarga di rumah sehat selalu!",
+                h30: "Halo Bang/Mbak! Semoga hari ini tupo dan cuaca di jalanan bersahabat ya. ☕\n\nIni Pakde mau ngasih kabar seneng, ada temen driver ojol di komunitas kita yang alhamdulillah bulan ini kebantu banget cicilan motornya dari bonus 3iReborn. Kalau suatu saat Bang/Mbak ngerasa udah capek di jalan dan siap bangun aset, pintu Pakde selalu terbuka. Semangat nge-bid nya! 🤲"
+            },
+            "guru": {
+                auto: "🤖 *Beep... Boop!* Halo Bapak/Ibu Pahlawan Tanpa Tanda Jasa, selamat datang! 📚✨\n\nPakde Sugiarto punya sistem *Income Tambahan Yang Terhormat* tanpa mengganggu jam mengajar. Silakan pelajari di sini:\n\n👉 [MASUKKAN LINK LP GURU DI SINI]\n\nSilakan dipelajari. Jika ada yang ingin didiskusikan, Pakde siap sedia!",
+                h1: "Halo Bapak/Ibu Guru, selamat beraktivitas dan mendidik generasi bangsa! 🇮🇩\n\nSudah sempat melihat materi *Income Tambahan* yang kemarin Pakde berikan? Banyak lho rekan-rekan pengajar yang terbantu dengan sistem ini. Jika ada yang kurang jelas, silakan tanyakan ke Pakde ya.",
+                h3: "Bapak/Ibu, bisnis di 3iReborn ini pada dasarnya adalah mengedukasi masyarakat tentang pentingnya perencanaan keuangan. Sangat cocok dengan jiwa pendidik Bapak/Ibu.\n\nMari kita mulai bangun aset masa depan ini agar keluarga di rumah juga semakin sejahtera. Apakah Bapak/Ibu siap mengisi form registrasinya hari ini?",
+                h9: "Bapak/Ibu Guru yang terhormat, mengingat kesibukan Bapak/Ibu di sekolah dan belum adanya konfirmasi, maka kuota bimbingan bulan ini Pakde prioritaskan untuk rekan pendidik lain yang sudah siap ya. 🙏\n\nTerima kasih atas pengabdiannya yang mulia. Sehat dan sukses selalu untuk Bapak/Ibu!",
+                h30: "Assalamu'alaikum Bapak/Ibu Guru, semoga selalu dalam lindungan-Nya dan lelahnya menjadi lillah. 🌿\n\nAlhamdulillah, bulan ini banyak rekan-rekan guru di komunitas kita yang sangat bersyukur karena bonus dari sistem ini bisa menutupi kebutuhan yang tidak tercover gaji bulanan. Kapan pun Bapak/Ibu merasa siap untuk memulai langkah cerdas ini, Pakde akan selalu menyambut dengan hangat. Sehat selalu! 🤲"
+            },
+            "pensiun": {
+                auto: "🤖 *Beep... Boop!* Halo Bpk/Ibu, selamat datang di NPA Smart System!\n\nLuar biasa semangat Bpk/Ibu merencanakan masa tua yang tenang! 🕋✨\n\nPakde Sugiarto punya strategi *Pensiun Bahagia & Mewujudkan Umrah*. Silakan klik link ini untuk melihat caranya:\n\n👉 [MASUKKAN LINK LP PENSIUN DI SINI]\n\nPelajari pelan-pelan ya. Jika ada yang ingin ditanyakan, balas chat ini. Pakde siap berdiskusi! ☕",
+                h1: "Halo Bpk/Ibu, salam sehat dan bahagia selalu! Gimana kabarnya hari ini? 🌿\n\nBpk/Ibu sudah sempat membaca link materi yang Pakde kirim kemarin? Jangan khawatir repot, sistem digital NPA ini dirancang khusus agar mudah digunakan. Kalau ada bagian yang membingungkan, mari kita obrolkan pelan-pelan.",
+                h3: "Bpk/Ibu, masa tua itu enaknya diisi dengan ibadah, main sama cucu, dan tidak membebani anak-anak secara finansial.\n\nDengan 3iReborn, kita tidak hanya menabung untuk diri sendiri, tapi ada nilai ibadah dan silaturahminya. Yuk, kita mulai program tabungan umroh atau dana pensiunnya. Biar Pakde yang bantu semua prosesnya. Bagaimana Bpk/Ibu?",
+                h9: "Bpk/Ibu yang baik, karena keterbatasan tenaga Pakde untuk mendampingi satu per satu, mohon izin kuota bimbingannya Pakde berikan kepada Bapak/Ibu lain yang sudah mengirimkan berkas pendaftaran duluan ya. 🙏\n\nPakde doakan semoga Bpk/Ibu sekeluarga senantiasa diberikan kesehatan, sisa umur yang berkah, dan kebahagiaan.",
+                h30: "Assalamu'alaikum Bpk/Ibu, semoga hari ini Bpk/Ibu dalam keadaan sehat wal afiat dan penuh keberkahan. ☕\n\nPakde cuma mau berbagi kabar gembira, alhamdulillah rombongan pensiunan dari komunitas 3iReborn kita sedang persiapan manasik untuk keberangkatan umroh dari hasil tabungan sistem ini. Kapan pun Bpk/Ibu rindu dan siap bergabung dengan komunitas positif kita, hubungi Pakde ya. Doa terbaik untuk Bpk/Ibu! 🤲"
+            },
+            "disabilitas": {
+                auto: "🤖 *Beep... Boop!* Halo Kak, selamat datang!\n\nKeterbatasan fisik bukan halangan, karena semangat Kakak jauh melebihi itu! ♿✨\n\nPakde Sugiarto telah menyiapkan sistem *Kerja Cerdas & Mandiri Finansial* yang 100% bisa dikerjakan lewat HP. Pelajari caranya di sini:\n\n👉 [MASUKKAN LINK LP DISABILITAS DI SINI]\n\nSilakan dibaca ya. Kalau butuh bantuan atau diskusi, Pakde ada di sini!",
+                h1: "Halo Kak! Semangat pagi dan terus berkarya ya! 💪\n\nSudah sempat baca-baca peluang kemandirian finansial yang kemarin Pakde kirim? Untuk urusan cari orang, Asisten Robot AI NPA kita yang akan bekerja. Kakak cukup kontrol dari HP. Ada yang mau ditanyakan?",
+                h3: "Kak, saatnya kita buktikan bahwa #disabilitaspunyakarya dan bisa sukses luar biasa secara finansial.\n\nKomunitas kita sangat suportif dan tidak membeda-bedakan. Mari bergabung dan bangun aset digital Kakak sendiri. Mau Pakde pandu pendaftarannya sekarang?",
+                h9: "Halo Kak, berhubung Pakde harus fokus mendampingi teman-teman difabel lain yang sudah menyelesaikan registrasi, sementara komunikasi kita Pakde jeda dulu ya. 🙏\n\nPakde salut banget sama semangat Kakak. Tetap berkarya dan jangan pernah menyerah sama keadaan. Sukses selalu, Kak!",
+                h30: "Halo Kak! Gimana kabarnya? Semoga selalu semangat dan sehat terus ya! 🌿\n\nPakde bangga banget, bulan ini beberapa sahabat disabilitas di komunitas kita berhasil tembus target income bulanan mereka hanya bermodal HP dari rumah. Kalau Kakak udah merasa siap untuk ngebuktiin kemandirian finansial bareng kita, chat Pakde lagi ya. Semangat terus! 🤲"
+            },
+            "umkm": {
+                auto: "🤖 *Beep... Boop!* Halo Bosku, selamat datang!\n\nLuar biasa semangat usahanya! Tapi ingat, jangan taruh semua telur di satu keranjang. 📦✨\n\nPakde Sugiarto punya strategi *Diversifikasi Aset* untuk mengamankan profit usaha Bosku. Cek proposalnya di sini:\n\n👉 [MASUKKAN LINK LP UMKM DI SINI]\n\nPelajari dulu santai-santai. Nanti kita diskusi bisnis bareng Pakde!",
+                h1: "Halo Bos, gimana pergerakan omzet hari ini? Semoga profitnya naik terus ya! 📈\n\nSudah sempat mereview proposal *Diversifikasi Aset* yang Pakde berikan kemarin? Mengalihkan sebagian kecil laba ke sistem 3iReborn ini adalah mitigasi risiko terbaik untuk pengusaha. Ada poin yang mau didiskusikan?",
+                h3: "Bos, bisnis utama memang penting, tapi punya 'Sekoci Penyelamat' berupa passive income dan proteksi jiwa itu jauh lebih penting untuk keamanan keluarga.\n\nSistemnya sudah auto-pilot, jadi nggak akan ganggu waktu ngurus bisnis utama. Yuk, amankan posisi kemitraannya hari ini. Mau Pakde kirimkan formnya?",
+                h9: "Halo Bosku, karena slot mentoring bisnis Pakde sudah penuh minggu ini, mohon izin prioritasnya Pakde berikan ke rekan-rekan pengusaha lain yang sudah siap mengamankan asetnya ya. 🙏\n\nSemoga bisnis utama Bosku makin menggurita, omzetnya meledak, dan berkah selalu!",
+                h30: "Halo Bosku! Semoga usahanya makin lancar jaya dan selalu dilindungi dari krisis. ☕\n\nPakde baru dapat *update* dari rekan-rekan UMKM di tim kita, banyak yang usahanya tertolong suntikan dana dari pencairan bonus 3iReborn saat pasar lagi lesu kemarin. Kapan-kapan kalau Bosku udah siap ngebangun 'sekoci penyelamat' finansial ini, langsung japri Pakde ya. Sukses selalu! 🤲"
+            },
+            "genz": {
+                auto: "🤖 *Beep... Boop!* Halo Bro/Sis, selamat datang!\n\nMasa muda emang waktunya gaspol bangun aset biar nanti bebas finansial! 📱✨\n\nPakde Sugiarto nyiapin *Sistem Cuan Ala Gen Z* yang cocok banget dikerjain pakai skill sosmed kamu. Cek blueprint-nya di sini:\n\n👉 [MASUKKAN LINK LP GEN Z DI SINI]\n\nPelajari dulu santai. Kalau udah paham, langsung chat Pakde ya!",
+                h1: "Halo Bro/Sis, lagi sibuk ngapain nih hari ini? 🎧\n\nUdah sempat baca blueprint yang Pakde kasih kemarin? Daripada duit jajan habis buat nongkrong atau checkout e-commerce mulu, mending disisihin dikit buat bangun aset di 3iReborn. Ada yang masih kurang jelas?",
+                h3: "Bro/Sis, waktu adalah aset terbesar kamu sekarang. Mulai lebih awal berarti kamu bakal nikmatin financial freedom lebih cepat dari teman-teman seangkatanmu.\n\nSistem digital NPA udah siap bantu kamu nyari prospek lewat sosmed. Yuk sikat peluangnya! Mau Pakde bantu registrasinya sekarang?",
+                h9: "Halo Bro/Sis, berhubung antusiasme anak-anak muda ngebangun aset lagi tinggi banget dan kuota Pakde terbatas, seat *mentoring*-nya Pakde kasih ke yang udah transfer duluan ya. 🙏\n\nSukses terus buat pendidikan dan karir kamu. Jangan lupa tetap nabung buat masa depan!",
+                h30: "Halo Bro/Sis! Apa kabar? Semoga makin produktif ya hari ini. 🚀\n\nCuma mau ngasih bocoran dikit, bulan ini anak-anak muda di tim kita lagi euforia karena pada dapet bonus gede dari sistem afiliasi 3iReborn. Lumayan banget buat beli gadget baru tanpa minta ortu! Kalau kamu udah siap ngebangun *passive income* sendiri, kabari Pakde ya. See you on top! 🤲"
+            },
+            "freelancer": {
+                auto: "🤖 *Beep... Boop!* Halo Kak, selamat datang pejuang work-from-anywhere!\n\nBiar nggak cemas nungguin invoice cair, mari kita bangun income yang pasti-pasti aja. 💻✨\n\nPakde Sugiarto punya sistem *Amankan Arus Kas Bulanan* khusus buat freelancer. Cek detail kerjanya di sini:\n\n👉 [MASUKKAN LINK LP FREELANCER DI SINI]\n\nSilakan dicek ya. Nanti kita ngobrol-ngobrol santai bahas sistemnya!",
+                h1: "Halo Kak! Gimana deadline project hari ini? Semoga aman terkendali ya! ☕\n\nSudah cek link sistem pengaman arus kas yang kemarin Pakde kirim? Menjadi mitra 3iReborn itu sangat fleksibel, persis seperti freelance, tapi dengan potensi passive income yang stabil. Ada yang mau didiskusikan?",
+                h3: "Kak, punya asuransi jiwa plus investasi itu wajib banget buat kita yang kerjanya lepas dan nggak punya jaminan pensiun dari perusahaan.\n\nDaripada uang fee habis nggak berbekas, mari kita gulung jadi aset digital. Sistem automasi kita siap ngebantu Kakak. Yuk, kita proses pendaftarannya hari ini?",
+                h9: "Halo Kak, berhubung jadwal *mentoring* Pakde sudah *fully booked*, mohon maaf sebelumnya slot pendampingannya Pakde oper ke rekan-rekan *freelancer* lain yang sudah *deal* duluan ya. 🙏\n\nSemoga project-project Kakak makin banyak yang *approve*, invoice lancar cair, dan sukses selalu!",
+                h30: "Halo Kak! Semoga *project*-nya lagi nggak banyak revisi ya hari ini. ☕\n\nPakde ngelihat temen-temen *freelancer* di grup lagi pada santai banget bulan ini, soalnya *passive income* dari 3iReborn mereka udah mulai cair konsisten tiap bulan. Jadi kerjaan utama bebas tanpa *pressure* uang. Kalau Kakak tertarik nyusul ngebangun sistem yang sama, pintu Pakde selalu terbuka lebar. Semangat! 🤲"
+            },
+            "abdi_negara": {
+                auto: "🤖 *Beep... Boop!* Halo Ndan/Komandan, selamat datang!\n\nSiap! Luar biasa dedikasi Komandan untuk negara. Namun masa depan keluarga juga harus dijaga! 🎖️✨\n\nPakde Sugiarto punya sistem *Ketenangan Finansial Purna Tugas* khusus untuk Abdi Negara. Izin mengirimkan materinya, Ndan:\n\n👉 [MASUKKAN LINK LP ABDI NEGARA DI SINI]\n\nSilakan dipelajari saat sedang lepas dinas. Jika ada pertanyaan, balas chat ini ya, Ndan!",
+                h1: "Siap, halo Komandan! Bagaimana giat hari ini? Semoga lancar dan aman terkendali! 🇮🇩\n\nIzin bertanya, sudah sempat membaca materi *Purna Tugas* yang kemarin Pakde kirim? Sistem NPA ini didesain agar berjalan otomatis tanpa mengganggu jam dinas Komandan. Jika ada yang ingin didiskusikan, Pakde siap sedia!",
+                h3: "Komandan, mengabdi pada negara memang tugas mulia, namun menyiapkan 'sekoci' aset untuk masa pensiun juga tak kalah pentingnya.\n\nMari kita mulai bangun aset masa depan ini sedini mungkin. Apakah Komandan sudah siap untuk mengisi form registrasinya hari ini? Biar Pakde bantu prosesnya!",
+                h9: "Siap Komandan! Mengingat padatnya jadwal dinas Komandan dan belum adanya konfirmasi, izin kuota bimbingan bulan ini Pakde prioritaskan untuk rekan-rekan lain yang sudah siap start ya. 🙏\n\nTerima kasih atas pengabdiannya. Sehat selalu dan sukses untuk karir Komandan!",
+                h30: "Siap, halo Komandan! Semoga selalu dalam lindungan-Nya dan tugas-tugas berjalan lancar. ☕\n\nAlhamdulillah, bulan ini beberapa rekan berseragam di komunitas kita sangat terbantu dengan bonus dari sistem ini, pikiran jadi tenang saat bertugas. Kapan pun Komandan merasa siap membangun aset masa depan, pintu Pakde selalu terbuka. Semangat bertugas, Ndan! 🤲"
+            },
+            "tkw": {
+                auto: "🤖 *Beep... Boop!* Halo Pahlawan Devisa, selamat datang!\n\nLuar biasa perjuangannya jauh dari keluarga demi masa depan! ✈️✨\n\nPakde Sugiarto punya sistem *Ubah Gaji Jadi Aset Ratusan Juta di Kampung*. Biar pulang nanti nggak bingung mau usaha apa. Cek panduannya di sini:\n\n👉 [MASUKKAN LINK LP TKW DI SINI]\n\nPelajari santai saat jam istirahat kerja ya. Kalau ada yang bingung, chat Pakde aja!",
+                h1: "Halo Mbak/Mas di rantau! Gimana kabarnya hari ini? Sehat-sehat selalu ya jaga kesehatan di negeri orang. 🌿\n\nSudah sempat baca panduan bangun aset yang kemarin Pakde kirim? Tenang aja, sistem ini 100% online jadi bisa dikerjain dari negara mana aja tanpa harus repot kirim barang. Ada yang mau ditanyain?",
+                h3: "Mbak/Mas, kerja ikut orang di luar negeri kan nggak mungkin selamanya. Makanya gaji sekarang harus disisihin buat jaring pengaman kalau nanti mau kumpul lagi bareng keluarga di Indonesia.\n\nYuk mulai cicil bangun asetnya bareng 3iReborn. Mau Pakde bantu daftarkan sekarang biar aman dan tenang?",
+                h9: "Halo Mbak/Mas, berhubung kuota bimbingan khusus pekerja migran Pakde minggu ini sudah full dan belum ada kabar dari Mbak/Mas, slot bimbingannya Pakde kasih ke teman-teman pahlawan devisa lain yang sudah transfer duluan ya. 🙏\n\nSemoga pekerjaannya lancar, majikannya baik-baik, dan cepat sukses bisa kumpul sama keluarga di Indonesia!",
+                h30: "Halo Pahlawan Devisa! Apa kabar di rantau? Semoga gaji bulanan aman dan kesehatan selalu terjaga ya. ☕\n\nPakde terharu banget, kemarin ada teman kita eks-pekerja migran di komunitas ini yang akhirnya bisa buka warung di kampung halaman pakai tabungan aset dari 3iReborn, nggak perlu balik lagi ke luar negeri. Kalau Mbak/Mas udah siap merencanakan kepulangan yang tenang, pintu Pakde selalu terbuka. Semangat kerjanya! 🤲"
+            },
+            "mahasiswa": {
+                auto: "🤖 *Beep... Boop!* Halo Bro/Sis Mahasiswa, selamat datang!\n\nKeren banget jiwa mandirinya, masih kuliah udah mikirin masa depan! 🎓✨\n\nPakde Sugiarto ada *Sistem Mahasiswa Mandiri* biar kamu bisa bayar UKT sendiri dan punya passive income sebelum wisuda. Cek caranya di sini:\n\n👉 [MASUKKAN LINK LP MAHASISWA DI SINI]\n\nBaca pelan-pelan ya. Nanti kalau ada yang kepo, langsung bales chat ini!",
+                h1: "Halo Bro/Sis! Gimana tugas kuliah hari ini? Aman kan nggak ada yang revisian? 😂\n\nUdah sempat buka materi yang kemarin Pakde kasih? Jangan takut ganggu jadwal kuliah, bisnis ini jalannya lewat sistem Landing Page & AI, persis kayak anak muda zaman *now*! Ada yang mau ditanyain?",
+                h3: "Bro/Sis, banyak banget yang lulus kuliah tapi susah cari kerja lho. Makanya kamu harus curi *start* ngebangun aset jaringan dari sekarang.\n\nCuma modal nyisihin duit nongkrong di cafe aja kok. Biar pas lulus nanti kamu udah punya income tetap yang jalan terus. Mau Pakde bantu registrasinya hari ini?",
+                h9: "Halo Bro/Sis Mahasiswa, karena jadwal *mentoring* Pakde udah padat merayap dan belum ada kepastian dari kamu, seat bimbingannya Pakde berikan ke temen-temen mahasiswa lain yang udah transfer duluan ya. 🙏\n\nSukses terus kuliahnya, semoga IPK-nya *cumlaude* dan lancar skripsinya!",
+                h30: "Halo Bro/Sis! Apa kabar dunia perkuliahan? Semoga nggak pusing mikirin dosen pembimbing ya. 🚀\n\nPakde cuma mau *share* cerita keren, minggu lalu ada mahasiswa di tim kita yang akhirnya bisa bayar sisa semesteran murni dari bonus 3iReborn tanpa nodong ortu lagi! Keren banget. Kalau kamu sewaktu-waktu siap mandiri dan pengen mulai, langsung japri Pakde aja ya. Semangat! 🤲"
+            },
+            "pengusaha": {
+                auto: "🤖 *Beep... Boop!* Halo Bpk/Ibu Pengusaha, selamat datang!\n\nLuar biasa pergerakan bisnis Bpk/Ibu. Namun, diversifikasi portofolio itu hal yang wajib di era sekarang. 🏢✨\n\nPakde Sugiarto punya sistem *Scale-Up Aset Autopilot* untuk mengamankan nilai aset Bpk/Ibu. Izin melampirkan proposalnya di sini:\n\n👉 [MASUKKAN LINK LP PENGUSAHA DI SINI]\n\nSilakan dipelajari. Pakde siap berdiskusi bisnis lebih lanjut dengan Bpk/Ibu!",
+                h1: "Halo Bpk/Ibu, bagaimana pergerakan bisnis hari ini? Semoga semua target perusahaan tercapai dengan mulus ya! 📈\n\nIzin memastikan, apakah Bpk/Ibu sudah sempat membaca proposal diversifikasi aset yang Pakde kirim kemarin? Sistem ini sangat cocok untuk pengusaha karena berjalan secara *auto-pilot* tanpa menambah beban operasional. Ada yang ingin didiskusikan?",
+                h3: "Bpk/Ibu, sehebat apapun sebuah bisnis, mengalokasikan dana ke instrumen investasi yang diawasi OJK adalah bentuk manajemen risiko yang sangat cerdas dan bijak.\n\nSistem ini akan memberikan passive income jangka panjang sekaligus proteksi nilai aset. Apakah Bpk/Ibu berkenan jika Pakde bantu proses registrasi kemitraannya hari ini?",
+                h9: "Halo Bpk/Ibu, melihat kesibukan Bpk/Ibu dalam mengelola bisnis utama dan belum adanya konfirmasi lanjutan, izin untuk sementara waktu prioritas *networking* ini Pakde alihkan ke rekan-rekan pengusaha lain yang sudah siap start ya. 🙏\n\nSemoga bisnis Bpk/Ibu semakin berekspansi dan sukses memenangkan persaingan pasar!",
+                h30: "Halo Bpk/Ibu! Semoga kesehatan dan kejayaan bisnis Bpk/Ibu selalu menyertai hari ini. ☕\n\nPakde baru selesai evaluasi bulanan, banyak rekan pengusaha di ring 1 kita yang merasa jauh lebih aman karena portofolio investasi 3iReborn mereka terus bertumbuh dan stabil tanpa harus dikawal setiap hari. Jika suatu saat Bpk/Ibu membutuhkan 'kendaraan kedua' untuk mem-backup aset perusahaan, Pakde selalu siap sedia berdiskusi. Sukses selalu, Bpk/Ibu! 🤲"
+            },
+            "sekolah": {
+                auto: "🤖 *Beep... Boop!* Halo Ayah/Bunda, selamat datang!\n\nPakde salut banget sama Ayah/Bunda yang sudah kepikiran masa depan pendidikan buah hati sejak dini! 📚✨\n\nPakde Sugiarto punya *Solusi Cerdas Dana Pendidikan* yang aman dan terproteksi dari inflasi biaya sekolah. Cek panduannya di link ini ya:\n\n👉 [MASUKKAN LINK LP SEKOLAH DI SINI]\n\nPelajari dulu santai-santai. Nanti kalau ada pertanyaan, balas aja chat ini Bun/Yah!",
+                h1: "Halo Ayah/Bunda, gimana kabarnya? Semoga anak-anak sehat dan ceria selalu ya hari ini! 🧸\n\nSudah sempat membaca materi Tabungan Pendidikan yang kemarin Pakde kirim? Jangan tunggu anak sudah besar baru pusing cari biaya pangkal sekolah ya Bun/Yah, lebih ringan kalau dicicil disiapkan dari sekarang. Ada yang mau diobrolin dulu?",
+                h3: "Ayah/Bunda, kita tahu inflasi biaya pendidikan itu naiknya cepat banget tiap tahun. Belum lagi risiko kehidupan kalau suatu saat pencari nafkah utama terjadi risiko (amit-amit).\n\nProgram 3iReborn ini memberikan proteksi jiwa sekaligus investasi tabungan dana pendidikan anak. Ayo kita mulai amankan masa depan pendidikan mereka. Mau Pakde pandu pendaftarannya hari ini?",
+                h9: "Halo Ayah/Bunda, karena kuota bimbingan Pakde untuk program dana pendidikan ini sangat terbatas, dengan berat hati kuotanya Pakde oper dulu ke para orang tua lain yang sudah mengumpulkan berkas ya. 🙏\n\nSemoga keluarga Ayah/Bunda selalu diberikan limpahan rezeki agar masa depan pendidikan anak-anak terjamin. Sehat selalu untuk keluarga!",
+                h30: "Halo Ayah/Bunda! Gimana perkembangan si kecil di sekolah? Semoga makin pintar dan membanggakan ya. 🌿\n\nPakde cuma mau *share* kabar seneng, kemarin ada salah satu mitra kita yang cairin sebagian dana investasinya untuk bayar uang pangkal masuk kuliah anaknya tanpa harus bingung pinjam uang sana-sini. Tenang banget rasanya. Kalau Ayah/Bunda udah siap komitmen menyiapkan dana pendidikan si kecil bareng 3iReborn, hubungi Pakde kapan aja ya. Salam sehat buat keluarga! 🤲"
+            },
+            "properti": {
+                auto: "🤖 *Beep... Boop!* Halo Bosku, praktisi properti andal, selamat datang!\n\nProperti fisik memang mantap, tapi kita juga butuh aset digital yang likuid. 🏢✨\n\nPakde Sugiarto punya *Sistem Passive Income* sebagai pendamping komisi properti. Cek selengkapnya di sini:\n\n👉 [MASUKKAN LINK LP PROPERTI DI SINI]\n\nPelajari santai ya. Kalau ada pertanyaan, balas chat ini!",
+                h1: "Halo Bosku, gimana prospek unit hari ini? Semoga banyak yang closing ya! 📈\n\nSudah sempat baca panduan aset digital yang Pakde kirim kemarin? Sistem ini 100% auto-pilot, jadi gak ganggu waktu *showing* unit. Ada yang mau ditanyakan?",
+                h3: "Bosku, jual properti kadang butuh waktu bulanan untuk *deal*, kan? Sambil nunggu komisi cair, aset digital 3iReborn ini bisa jadi *cashflow* bulanan yang stabil.\n\nYuk mulai cicil bangun asetnya. Mau Pakde bantu daftarkan sekarang biar keran income keduanya jalan?",
+                h9: "Halo Bosku, berhubung jadwal mentoring Pakde sangat padat dan belum ada konfirmasi, slot bimbingannya Pakde berikan ke rekan agen properti lain yang sudah siap start duluan ya. 🙏\n\nSemoga jualannya makin laris dan sukses selalu di dunia properti!",
+                h30: "Halo Bosku! Gimana kabarnya? Semoga pasar properti lagi bagus ya bulan ini. ☕\n\nPakde ngelihat beberapa rekan dari bidang properti di tim kita makin tenang finansialnya, karena saat *market* lagi sepi, bonus dari 3iReborn tetap cair tiap bulan. Kalau Bosku udah siap ngebangun *cashflow* stabil ini, pintu Pakde selalu terbuka. Semangat closing-nya! 🤲"
+            }
+        };
+
+        function tampilkanScript() {
+            const kolam = document.getElementById('pilihan-kolam').value;
+            const data = databaseFollowUp[kolam];
+            
+            if (data) {
+                document.getElementById('script-container').classList.remove('hidden');
+                document.getElementById('teks-autoreply').value = data.auto;
+                document.getElementById('teks-h1').value = data.h1;
+                document.getElementById('teks-h3').value = data.h3;
+                document.getElementById('teks-h9').value = data.h9;
+                document.getElementById('teks-h30').value = data.h30;
+            }
+        }
+
+        function salinTeks(elementId) {
+            const copyText = document.getElementById(elementId);
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // Untuk Mobile
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                alert("📋 Teks berhasil disalin! Silakan paste ke WhatsApp.");
+            });
+        }
+    </script>
+</body>
+</html>
