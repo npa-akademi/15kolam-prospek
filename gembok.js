@@ -3,7 +3,9 @@
     // Jenderal CUKUP EDIT DI FILE INI SAJA kalau ada mitra baru yang bayar!
     const nomorSah = [
         "6285218453131", // Admin Jenderal
-        "6281586197772"  // Queen Tini
+        "6281586197772", // Queen Tini
+        "62818811829", // Suherman 
+        "6282240001731" // Kurniawan S Ag 
     ];
 
     const urlParams = new URLSearchParams(window.location.search);
