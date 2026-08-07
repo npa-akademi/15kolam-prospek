@@ -5,119 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesin Builder 16 Kolam Prospek - NPA</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0a0a0a;
-            color: #fff;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: #111;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #d4af37;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
-        }
-        h2 {
-            text-align: center;
-            color: #d4af37;
-            margin-bottom: 5px;
-        }
-        p.subtitle {
-            text-align: center;
-            color: #f3e5ab;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #d4af37;
-            font-weight: bold;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #444;
-            border-radius: 8px;
-            background: #222;
-            color: #fff;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-        .btn-generate {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #d4af37, #b58500);
-            color: #000;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-generate:hover {
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-        }
-        #result-box {
-            display: none;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px dashed #444;
-        }
-        textarea {
-            width: 100%;
-            height: 350px;
-            background: #222;
-            color: #00ff00;
-            border: 1px solid #444;
-            border-radius: 8px;
-            padding: 15px;
-            font-family: monospace;
-            font-size: 13px;
-            box-sizing: border-box;
-            margin-bottom: 15px;
-        }
-        .btn-copy {
-            width: 100%;
-            padding: 12px;
-            background: #25d366;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0a0a0a; color: #fff; margin: 0; padding: 20px; }
+        .container { max-width: 700px; margin: 0 auto; background: #111; padding: 30px; border-radius: 12px; border: 1px solid #d4af37; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2); }
+        h2 { text-align: center; color: #d4af37; margin-bottom: 5px; }
+        p.subtitle { text-align: center; color: #f3e5ab; margin-bottom: 30px; font-size: 14px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #d4af37; font-weight: bold; }
+        input[type="text"] { width: 100%; padding: 12px; border: 1px solid #444; border-radius: 8px; background: #222; color: #fff; font-size: 16px; box-sizing: border-box; }
+        .btn-generate { width: 100%; padding: 15px; background: linear-gradient(135deg, #d4af37, #b58500); color: #000; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        #result-box { display: none; margin-top: 30px; padding-top: 20px; border-top: 2px dashed #444; }
+        textarea { width: 100%; height: 350px; background: #222; color: #00ff00; border: 1px solid #444; border-radius: 8px; padding: 15px; font-family: monospace; font-size: 13px; box-sizing: border-box; margin-bottom: 15px; }
+        .btn-copy { width: 100%; padding: 12px; background: #25d366; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h2>⚙️ MESIN BUILDER 16 KOLAM PROSPEK ⚙️</h2>
-    <p class="subtitle">Generate Web Replika Khusus Mitra NPA Smart System</p>
+    <p class="subtitle">Generate Web Replika Dinamis (Support Kustom Logo)</p>
 
     <div class="form-group">
-        <label>👤 Nama Mitra (Contoh: Queen Tini)</label>
-        <input type="text" id="inputNama" placeholder="Masukkan Nama Mitra...">
+        <label>👤 Nama Mitra</label>
+        <input type="text" id="inputNama" placeholder="Contoh: Queen Tini">
     </div>
     
     <div class="form-group">
-        <label>📱 Nomor WA Mitra (Awali dengan 62)</label>
+        <label>📱 Nomor WA Mitra</label>
         <input type="text" id="inputWA" placeholder="Contoh: 6281586197772">
+    </div>
+
+    <div class="form-group">
+        <label>🖼️ Link Logo Kustom (Opsional)</label>
+        <input type="text" id="inputLogo" placeholder="Contoh: https://i.postimg.cc/xxx/logo.png">
+        <small style="color:#aaa; display:block; margin-top:5px;">*Jika diisi, logo otomatis pindah ke TENGAH halaman.</small>
     </div>
 
     <button class="btn-generate" onclick="generateLinks()">🚀 GENERATE LINK REPLIKA</button>
 
     <div id="result-box">
-        <label>✅ BERHASIL! Copy teks di bawah ini dan berikan ke Mitra:</label>
+        <label>✅ BERHASIL! Copy teks di bawah ini:</label>
         <textarea id="outputLinks" readonly></textarea>
         <button class="btn-copy" onclick="copyToClipboard()">📋 COPY SEMUA LINK</button>
     </div>
@@ -146,6 +72,7 @@
     function generateLinks() {
         let nama = document.getElementById('inputNama').value.trim();
         let wa = document.getElementById('inputWA').value.trim();
+        let logo = document.getElementById('inputLogo').value.trim();
 
         if (nama === "" || wa === "") {
             alert("Ndan, Nama dan WA tidak boleh kosong!");
@@ -153,19 +80,17 @@
         }
 
         wa = wa.replace(/\D/g,'');
-        if(wa.startsWith('0')) {
-            wa = '62' + wa.substring(1);
-        }
+        if(wa.startsWith('0')) wa = '62' + wa.substring(1);
 
         let encodedNama = encodeURIComponent(nama);
-        let resultText = `Halo Kak ${nama}! 🎉\nIni adalah 16 Link Kolam Prospek (Web Replika) milik Anda.\nSilakan sebarkan link ini ke target prospek yang sesuai:\n\n`;
+        let encodedLogo = logo ? `&logo=${encodeURIComponent(logo)}` : "";
+
+        let resultText = `Halo Kak ${nama}! 🎉\nIni adalah Link Kolam Prospek (Web Replika) Anda:\n\n`;
 
         baseUrlList.forEach(item => {
-            let fullUrl = `${item.url}?nama=${encodedNama}&wa=${wa}`;
+            let fullUrl = `${item.url}?nama=${encodedNama}&wa=${wa}${encodedLogo}`;
             resultText += `*${item.name}*\n🔗 ${fullUrl}\n\n`;
         });
-
-        resultText += `Semua link di atas sudah otomatis terhubung ke WA Anda (${wa}).\nSemangat Closing! 🚀`;
 
         document.getElementById('outputLinks').value = resultText;
         document.getElementById('result-box').style.display = 'block';
@@ -176,7 +101,7 @@
         copyText.select();
         copyText.setSelectionRange(0, 99999);
         navigator.clipboard.writeText(copyText.value);
-        alert("Siap! Semua Link berhasil di-copy, Jenderal! Tinggal paste ke WA Mitra.");
+        alert("Siap! Link berhasil di-copy!");
     }
 </script>
 
