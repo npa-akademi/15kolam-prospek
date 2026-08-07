@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI FB Prospek Generator — NPA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { poppins: ['Poppins', 'sans-serif'], }, colors: { darkblue: '#001f3f', navy: '#003366', cyan: '#00b4d8', ocean: '#0077b6', } } } }
+    </script>
+    <style>
+        body { background: linear-gradient(135deg, #0b1120, #003366); background-attachment: fixed; color: white; }
+        .glass-panel { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .loader { border: 4px solid rgba(0, 180, 216, 0.3); border-top: 4px solid #00b4d8; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="font-poppins min-h-screen p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8 mt-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-cyan mb-2">🧠 AI FB Prospek Generator</h1>
+            <p class="text-gray-300 opacity-90 text-sm md:text-base">Analisa audiens, temukan pain points, & buat strategi "greget" untuk produk/bisnis APAPUN.</p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-6 md:p-8 mb-8 shadow-2xl">
+            <div class="mb-5 bg-navy bg-opacity-40 p-4 rounded-xl border border-cyan border-opacity-30">
+                <label class="block text-sm font-semibold mb-2 text-cyan flex justify-between items-center">
+                    <span>🔑 1. API Key Gemini (Wajib)</span>
+                    <a href="https://aistudio.google.com/app/apikey" target="_blank" class="text-xs bg-cyan text-darkblue px-2 py-1 rounded hover:bg-white transition">Buat Gratis</a>
+                </label>
+                <input type="password" id="apiKeyInput" placeholder="Paste API Key Anda di sini..." class="w-full p-3 rounded-xl bg-darkblue bg-opacity-70 border border-gray-600 focus:border-cyan focus:outline-none text-white text-sm">
+            </div>
+
+            <div class="mb-5">
+                <label class="block text-sm font-semibold mb-2 text-cyan">🤖 2. Pilih Mesin Robot AI</label>
+                <select id="aiModel" class="w-full p-3 rounded-xl bg-navy bg-opacity-50 border border-gray-600 focus:border-cyan focus:outline-none text-blue-300 font-semibold appearance-none">
+                    <!-- NAMA MODEL DIPERBAIKI SESUAI STANDAR GOOGLE TERBARU -->
+                    <option value="gemini-1.5-flash-latest">Gemini 1.5 Flash (Super Cepat)</option>
+                    <option value="gemini-1.5-pro-latest">Gemini 1.5 Pro (Pintar & Detail)</option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-cyan">📦 3. Nama Produk / Bisnis Anda</label>
+                    <input type="text" id="productInput" placeholder="Contoh: Skincare Anti-Aging, Bisnis Properti, Baju Gamis..." class="w-full p-3 rounded-xl bg-navy bg-opacity-50 border border-gray-600 focus:border-cyan focus:outline-none text-white placeholder-gray-400">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-cyan">🎯 4. Target Spesifik (Opsional)</label>
+                    <input type="text" id="audienceInput" placeholder="Contoh: Ibu Rumah Tangga 30+ tahun..." class="w-full p-3 rounded-xl bg-navy bg-opacity-50 border border-gray-600 focus:border-cyan focus:outline-none text-white placeholder-gray-400">
+                </div>
+            </div>
+            
+            <button id="generateBtn" onclick="generateStrategy()" class="w-full bg-gradient-to-r from-cyan to-ocean hover:scale-[1.02] transform transition-all duration-200 text-white font-bold py-4 rounded-xl shadow-lg flex justify-center items-center gap-2 text-lg">
+                <span>🔥 Buat Strategi Prospek Sekarang</span>
+            </button>
+
+            <div id="loadingIndicator" class="hidden flex-col items-center justify-center mt-6">
+                <div class="loader mb-3"></div>
+                <p id="loadingText" class="text-cyan animate-pulse font-medium text-center mt-3">Sedang meracik strategi bisnis Anda...</p>
+            </div>
+            <div id="errorMessage" class="hidden mt-4 p-4 bg-red-500 bg-opacity-20 border border-red-500 rounded-xl text-red-200 text-center text-sm break-all"></div>
+        </div>
+
+        <div id="resultsContainer" class="hidden space-y-6">
+            <div class="glass-panel rounded-2xl p-5 md:p-6 border-l-4 border-l-cyan">
+                <h3 class="text-lg md:text-xl font-bold mb-4 flex items-center gap-2"><span class="text-2xl">🎯</span> Target Persona & Minat</h3>
+                <p id="resPersona" class="text-gray-200 leading-relaxed mb-4 text-sm md:text-base"></p>
+                <div class="bg-navy bg-opacity-50 p-4 rounded-xl">
+                    <h4 class="font-semibold text-cyan mb-2 text-sm">Grup / Minat FB yang harus dicari:</h4>
+                    <ul id="resKeywords" class="list-disc list-inside text-gray-300 space-y-1 text-sm"></ul>
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-2xl p-5 md:p-6 border-l-4 border-l-red-400">
+                <h3 class="text-lg md:text-xl font-bold mb-4 flex items-center gap-2"><span class="text-2xl">⚡</span> Pain Points (Tombol Pemicu)</h3>
+                <p class="text-xs md:text-sm text-gray-400 mb-3">Masalah utama yang membuat mereka terdesak membeli produk Anda:</p>
+                <ul id="resPainPoints" class="space-y-3 text-sm md:text-base"></ul>
+            </div>
+
+            <div class="glass-panel rounded-2xl p-5 md:p-6 border-l-4 border-l-yellow-400">
+                <h3 class="text-lg md:text-xl font-bold mb-4 flex items-center gap-2"><span class="text-2xl">✍️</span> Ide Status / Copywriting Hook</h3>
+                <div class="bg-navy bg-opacity-50 p-4 rounded-xl relative group">
+                    <button onclick="copyText('resCopywriting')" class="absolute top-2 right-2 bg-gray-700 hover:bg-cyan text-xs py-1 px-2 rounded transition-colors z-10">Copy</button>
+                    <p id="resCopywriting" class="text-gray-200 italic font-medium text-sm md:text-base pr-12"></p>
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-2xl p-5 md:p-6 border-l-4 border-l-green-400">
+                <h3 class="text-lg md:text-xl font-bold mb-4 flex items-center gap-2"><span class="text-2xl">💬</span> Strategi DM (Anti-Spam)</h3>
+                <div class="bg-navy bg-opacity-50 p-4 rounded-xl relative group">
+                    <button onclick="copyText('resDmScript')" class="absolute top-2 right-2 bg-gray-700 hover:bg-cyan text-xs py-1 px-2 rounded transition-colors z-10">Copy</button>
+                    <p id="resDmScript" class="text-gray-200 whitespace-pre-line text-sm md:text-base pr-12"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            if (localStorage.getItem('npa_tools_api_key')) document.getElementById('apiKeyInput').value = localStorage.getItem('npa_tools_api_key');
+            if (localStorage.getItem('npa_tools_ai_model')) document.getElementById('aiModel').value = localStorage.getItem('npa_tools_ai_model');
+        };
+
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            const tempTextArea = document.createElement("textarea"); tempTextArea.value = text; document.body.appendChild(tempTextArea);
+            tempTextArea.select(); document.execCommand("copy"); document.body.removeChild(tempTextArea);
+            const btn = document.querySelector(`#${elementId}`).previousElementSibling;
+            const originalText = btn.innerText; btn.innerText = "Copied!"; btn.classList.add("bg-green-500", "text-white");
+            setTimeout(() => { btn.innerText = originalText; btn.classList.remove("bg-green-500", "text-white"); }, 2000);
+        }
+
+        function showError(msg) {
+            const errDiv = document.getElementById('errorMessage'); errDiv.innerText = msg; errDiv.classList.remove('hidden');
+            document.getElementById('loadingIndicator').classList.add('hidden');
+            document.getElementById('generateBtn').disabled = false; document.getElementById('generateBtn').classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        async function generateStrategy() {
+            const apiKey = document.getElementById('apiKeyInput').value.trim();
+            const aiModel = document.getElementById('aiModel').value;
+            const product = document.getElementById('productInput').value.trim();
+            const audience = document.getElementById('audienceInput').value.trim();
+
+            if (!apiKey) return showError("Mohon masukkan API Key Gemini.");
+            if (!product) return showError("Mohon masukkan nama Produk / Bisnis Anda.");
+
+            localStorage.setItem('npa_tools_api_key', apiKey);
+            localStorage.setItem('npa_tools_ai_model', aiModel);
+
+            document.getElementById('errorMessage').classList.add('hidden');
+            document.getElementById('resultsContainer').classList.add('hidden');
+            document.getElementById('loadingIndicator').classList.remove('hidden');
+            document.getElementById('generateBtn').disabled = true; document.getElementById('generateBtn').classList.add('opacity-50', 'cursor-not-allowed');
+            
+            try {
+                const targetText = audience ? `dengan target spesifik: ${audience}` : `untuk audiens umum`;
+                const prompt = `Anda adalah pakar Digital Marketing profesional. 
+                Buat analisis prospek Facebook untuk produk/bisnis berikut: "${product}" ${targetText}.
+                
+                ATURAN MUTLAK: Jawaban harus ringkas, tajam, dan langsung ke intinya (Anti-Dongeng/Anti Bertele-tele). Jangan berikan pengantar.
+
+                Keluarkan jawaban Anda MURNI HANYA dalam format JSON di bawah ini, TANPA teks tambahan, TANPA markdown:
+                {
+                  "persona": "Deskripsi psikologis singkat 2-3 kalimat tentang target market dan ketakutan mereka.",
+                  "search_keywords": ["Kata Kunci Grup FB 1", "Minat 2", "Tokoh/Hobi 3"],
+                  "pain_points": ["Masalah tajam 1", "Masalah tajam 2", "Masalah tajam 3"],
+                  "copywriting_hook": "1 paragraf pendek (maksimal 4 kalimat) hook untuk status FB yang memicu rasa penasaran tanpa jualan brutal.",
+                  "dm_script": "Template pesan sapaan Inbox/DM (maksimal 3 kalimat). Ramah, elegan, dan memancing balasan."
+                }`;
+
+                // ENDPOINT API GOOGLE DIPERBAIKI
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${aiModel}:generateContent?key=${apiKey}`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error?.message || "Terjadi kesalahan koneksi dengan server Google.");
+                }
+
+                let resultText = data.candidates[0].content.parts[0].text;
+                const firstBrace = resultText.indexOf('{'); const lastBrace = resultText.lastIndexOf('}');
+                
+                if (firstBrace !== -1 && lastBrace !== -1) {
+                    resultText = resultText.substring(firstBrace, lastBrace + 1);
+                } else {
+                    throw new Error("Format AI salah atau tidak menghasilkan JSON.");
+                }
+
+                const resultJson = JSON.parse(resultText);
+
+                document.getElementById('resPersona').innerText = resultJson.persona;
+                document.getElementById('resKeywords').innerHTML = resultJson.search_keywords.map(kw => `<li>${kw}</li>`).join('');
+                document.getElementById('resPainPoints').innerHTML = resultJson.pain_points.map(pp => `<li class="flex gap-3 bg-red-500 bg-opacity-10 p-3 rounded-lg"><span class="text-red-400">✗</span> <span class="text-gray-200">${pp}</span></li>`).join('');
+                document.getElementById('resCopywriting').innerText = resultJson.copywriting_hook;
+                document.getElementById('resDmScript').innerText = resultJson.dm_script;
+
+                document.getElementById('loadingIndicator').classList.add('hidden');
+                document.getElementById('resultsContainer').classList.remove('hidden');
+            } catch (error) {
+                // PESAN ERROR DIBUAT LEBIH JELAS
+                showError("Gagal Terhubung: " + error.message + " (Pastikan API Key benar dan Kuota Akun Gratis Anda belum habis)");
+            } finally {
+                document.getElementById('generateBtn').disabled = false; document.getElementById('generateBtn').classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+    </script>
+</body>
+</html>
