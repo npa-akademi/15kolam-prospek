@@ -11,6 +11,21 @@
     const urlParams = new URLSearchParams(window.location.search);
     const namaMitra = urlParams.get('nama');
     const waMitra = urlParams.get('wa');
+        const logoKustom = urlParams.get('logo');
+    
+    // SCRIPT AJAIB: GANTI LOGO & POSISIKAN KE TENGAH
+    if (logoKustom) {
+        // Mencari gambar logo utama di HTML (yang memiliki atribut alt="Logo")
+        const imgLogo = document.querySelector('img[alt="Logo"]');
+        if (imgLogo) {
+            imgLogo.src = logoKustom; // Ganti gambar aslinya dengan link dari URL
+            
+            // Mengubah posisi dari kiri (self-start) menjadi ke tengah (mx-auto)
+            imgLogo.classList.remove('self-start');
+            imgLogo.classList.add('mx-auto');
+        }
+    }
+    
 
     if (namaMitra && waMitra) {
         // CEK GEMBOK SERVER
