@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI FB Prospek Generator — NPA</title>
+    <title>NPA Content Viral Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -20,8 +20,8 @@
 
     <div class="max-w-4xl mx-auto">
         <div class="text-center mb-8 mt-4">
-            <h1 class="text-3xl md:text-4xl font-bold text-cyan mb-2">🧠 AI FB Prospek Generator</h1>
-            <p class="text-gray-300 opacity-90 text-sm md:text-base">Analisa audiens, temukan pain points, & buat strategi "greget" untuk produk/bisnis APAPUN.</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-cyan mb-2">🧠 NPA Content Viral Pro</h1>
+            <p class="text-gray-300 opacity-90 text-sm md:text-base">Analisis audiens, temukan poin masalah, dan buat strategi tepat sasaran untuk produk atau bisnis apa pun.</p>
         </div>
 
         <div class="glass-panel rounded-2xl p-6 md:p-8 mb-8 shadow-2xl">
@@ -30,15 +30,16 @@
                     <span>🔑 1. API Key Gemini (Wajib)</span>
                     <a href="https://aistudio.google.com/app/apikey" target="_blank" class="text-xs bg-cyan text-darkblue px-2 py-1 rounded hover:bg-white transition">Buat Gratis</a>
                 </label>
-                <input type="password" id="apiKeyInput" placeholder="Paste API Key Anda di sini..." class="w-full p-3 rounded-xl bg-darkblue bg-opacity-70 border border-gray-600 focus:border-cyan focus:outline-none text-white text-sm">
+                <input type="password" id="apiKeyInput" placeholder="Tempel API Key Anda di sini..." class="w-full p-3 rounded-xl bg-darkblue bg-opacity-70 border border-gray-600 focus:border-cyan focus:outline-none text-white text-sm">
             </div>
 
             <div class="mb-5">
-                <label class="block text-sm font-semibold mb-2 text-cyan">🤖 2. Pilih Mesin Robot AI</label>
+                <label class="block text-sm font-semibold mb-2 text-cyan">🤖 2. Pilih Model AI</label>
                 <select id="aiModel" class="w-full p-3 rounded-xl bg-navy bg-opacity-50 border border-gray-600 focus:border-cyan focus:outline-none text-blue-300 font-semibold appearance-none">
-                    <!-- NAMA MODEL DIPERBAIKI SESUAI STANDAR GOOGLE TERBARU -->
-                    <option value="gemini-1.5-flash-latest">Gemini 1.5 Flash (Super Cepat)</option>
-                    <option value="gemini-1.5-pro-latest">Gemini 1.5 Pro (Pintar & Detail)</option>
+                    <option value="gemini-1.5-flash">Gemini 1.5 Flash (Cepat & Stabil)</option>
+                    <option value="gemini-1.5-pro">Gemini 1.5 Pro (Pintar & Detail)</option>
+                    <option value="gemini-2.0-flash">Gemini 2.0 Flash (Generasi Baru)</option>
+                    <option value="gemini-2.5-flash">Gemini 2.5 Flash (Terbaru)</option>
                 </select>
             </div>
 
@@ -54,14 +55,14 @@
             </div>
             
             <button id="generateBtn" onclick="generateStrategy()" class="w-full bg-gradient-to-r from-cyan to-ocean hover:scale-[1.02] transform transition-all duration-200 text-white font-bold py-4 rounded-xl shadow-lg flex justify-center items-center gap-2 text-lg">
-                <span>🔥 Buat Strategi Prospek Sekarang</span>
+                <span>🔥 Buat Strategi Sekarang</span>
             </button>
 
             <div id="loadingIndicator" class="hidden flex-col items-center justify-center mt-6">
                 <div class="loader mb-3"></div>
                 <p id="loadingText" class="text-cyan animate-pulse font-medium text-center mt-3">Sedang meracik strategi bisnis Anda...</p>
             </div>
-            <div id="errorMessage" class="hidden mt-4 p-4 bg-red-500 bg-opacity-20 border border-red-500 rounded-xl text-red-200 text-center text-sm break-all"></div>
+            <div id="errorMessage" class="hidden mt-4 p-4 bg-red-500 bg-opacity-20 border border-red-500 rounded-xl text-red-200 text-center text-sm"></div>
         </div>
 
         <div id="resultsContainer" class="hidden space-y-6">
@@ -75,7 +76,7 @@
             </div>
 
             <div class="glass-panel rounded-2xl p-5 md:p-6 border-l-4 border-l-red-400">
-                <h3 class="text-lg md:text-xl font-bold mb-4 flex items-center gap-2"><span class="text-2xl">⚡</span> Pain Points (Tombol Pemicu)</h3>
+                <h3 class="text-lg md:text-xl font-bold mb-4 flex items-center gap-2"><span class="text-2xl">⚡</span> Poin Masalah (Tombol Pemicu)</h3>
                 <p class="text-xs md:text-sm text-gray-400 mb-3">Masalah utama yang membuat mereka terdesak membeli produk Anda:</p>
                 <ul id="resPainPoints" class="space-y-3 text-sm md:text-base"></ul>
             </div>
@@ -83,18 +84,22 @@
             <div class="glass-panel rounded-2xl p-5 md:p-6 border-l-4 border-l-yellow-400">
                 <h3 class="text-lg md:text-xl font-bold mb-4 flex items-center gap-2"><span class="text-2xl">✍️</span> Ide Status / Copywriting Hook</h3>
                 <div class="bg-navy bg-opacity-50 p-4 rounded-xl relative group">
-                    <button onclick="copyText('resCopywriting')" class="absolute top-2 right-2 bg-gray-700 hover:bg-cyan text-xs py-1 px-2 rounded transition-colors z-10">Copy</button>
+                    <button onclick="copyText('resCopywriting')" class="absolute top-2 right-2 bg-gray-700 hover:bg-cyan text-xs py-1 px-2 rounded transition-colors z-10">Salin</button>
                     <p id="resCopywriting" class="text-gray-200 italic font-medium text-sm md:text-base pr-12"></p>
                 </div>
             </div>
 
             <div class="glass-panel rounded-2xl p-5 md:p-6 border-l-4 border-l-green-400">
-                <h3 class="text-lg md:text-xl font-bold mb-4 flex items-center gap-2"><span class="text-2xl">💬</span> Strategi DM (Anti-Spam)</h3>
+                <h3 class="text-lg md:text-xl font-bold mb-4 flex items-center gap-2"><span class="text-2xl">💬</span> Strategi Pesan (Anti-Spam)</h3>
                 <div class="bg-navy bg-opacity-50 p-4 rounded-xl relative group">
-                    <button onclick="copyText('resDmScript')" class="absolute top-2 right-2 bg-gray-700 hover:bg-cyan text-xs py-1 px-2 rounded transition-colors z-10">Copy</button>
+                    <button onclick="copyText('resDmScript')" class="absolute top-2 right-2 bg-gray-700 hover:bg-cyan text-xs py-1 px-2 rounded transition-colors z-10">Salin</button>
                     <p id="resDmScript" class="text-gray-200 whitespace-pre-line text-sm md:text-base pr-12"></p>
                 </div>
             </div>
+        </div>
+
+        <div class="text-center mt-12 mb-6">
+            <a href="index.html" class="text-cyan hover:text-white transition-colors text-sm font-medium">← Kembali ke Menu Utama</a>
         </div>
     </div>
 
@@ -104,13 +109,32 @@
             if (localStorage.getItem('npa_tools_ai_model')) document.getElementById('aiModel').value = localStorage.getItem('npa_tools_ai_model');
         };
 
-        function copyText(elementId) {
+        async function copyText(elementId) {
             const text = document.getElementById(elementId).innerText;
-            const tempTextArea = document.createElement("textarea"); tempTextArea.value = text; document.body.appendChild(tempTextArea);
-            tempTextArea.select(); document.execCommand("copy"); document.body.removeChild(tempTextArea);
             const btn = document.querySelector(`#${elementId}`).previousElementSibling;
-            const originalText = btn.innerText; btn.innerText = "Copied!"; btn.classList.add("bg-green-500", "text-white");
-            setTimeout(() => { btn.innerText = originalText; btn.classList.remove("bg-green-500", "text-white"); }, 2000);
+            const originalText = btn.innerText; 
+            
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(text);
+                } else {
+                    throw new Error("Clipboard API tidak tersedia");
+                }
+            } catch (err) {
+                const tempTextArea = document.createElement("textarea"); 
+                tempTextArea.value = text; 
+                document.body.appendChild(tempTextArea);
+                tempTextArea.select(); 
+                document.execCommand("copy"); 
+                document.body.removeChild(tempTextArea);
+            }
+            
+            btn.innerText = "Tersalin!"; 
+            btn.classList.add("bg-green-500", "text-white");
+            setTimeout(() => { 
+                btn.innerText = originalText; 
+                btn.classList.remove("bg-green-500", "text-white"); 
+            }, 2000);
         }
 
         function showError(msg) {
@@ -125,8 +149,8 @@
             const product = document.getElementById('productInput').value.trim();
             const audience = document.getElementById('audienceInput').value.trim();
 
-            if (!apiKey) return showError("Mohon masukkan API Key Gemini.");
-            if (!product) return showError("Mohon masukkan nama Produk / Bisnis Anda.");
+            if (!apiKey) return showError("Mohon masukkan API Key Gemini Anda.");
+            if (!product) return showError("Mohon masukkan nama Produk atau Bisnis Anda.");
 
             localStorage.setItem('npa_tools_api_key', apiKey);
             localStorage.setItem('npa_tools_ai_model', aiModel);
@@ -152,26 +176,17 @@
                   "dm_script": "Template pesan sapaan Inbox/DM (maksimal 3 kalimat). Ramah, elegan, dan memancing balasan."
                 }`;
 
-                // ENDPOINT API GOOGLE DIPERBAIKI
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${aiModel}:generateContent?key=${apiKey}`, {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
                 });
-                
                 const data = await response.json();
-                
-                if (!response.ok) {
-                    throw new Error(data.error?.message || "Terjadi kesalahan koneksi dengan server Google.");
-                }
+                if (!response.ok) throw new Error(data.error?.message || "Terjadi kesalahan pada server AI.");
 
                 let resultText = data.candidates[0].content.parts[0].text;
                 const firstBrace = resultText.indexOf('{'); const lastBrace = resultText.lastIndexOf('}');
-                
-                if (firstBrace !== -1 && lastBrace !== -1) {
-                    resultText = resultText.substring(firstBrace, lastBrace + 1);
-                } else {
-                    throw new Error("Format AI salah atau tidak menghasilkan JSON.");
-                }
+                if (firstBrace !== -1 && lastBrace !== -1) resultText = resultText.substring(firstBrace, lastBrace + 1);
+                else throw new Error("Format AI salah.");
 
                 const resultJson = JSON.parse(resultText);
 
@@ -184,8 +199,7 @@
                 document.getElementById('loadingIndicator').classList.add('hidden');
                 document.getElementById('resultsContainer').classList.remove('hidden');
             } catch (error) {
-                // PESAN ERROR DIBUAT LEBIH JELAS
-                showError("Gagal Terhubung: " + error.message + " (Pastikan API Key benar dan Kuota Akun Gratis Anda belum habis)");
+                showError("Gagal: " + error.message);
             } finally {
                 document.getElementById('generateBtn').disabled = false; document.getElementById('generateBtn').classList.remove('opacity-50', 'cursor-not-allowed');
             }
