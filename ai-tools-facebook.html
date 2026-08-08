@@ -164,7 +164,7 @@ window.addEventListener("DOMContentLoaded", function () {
     if (savedKey) apiKeyInput.value = savedKey;
 
     const savedModel = localStorage.getItem("npa_tools_ai_model");
-    const validModels = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-2.5-flash", "gemini-3.6-flash];
+    const validModels = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-2.5-flash", "gemini-3.6-flash"];
     
     if (savedModel && validModels.includes(savedModel)) {
         aiModel.value = savedModel;
