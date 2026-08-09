@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPA PREMIUM GEMS - 3 AI Tools in 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #1e293b;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #334155;
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            color: #fbbf24;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            color: #94a3b8;
+            margin-top: 5px;
+        }
+
+        /* Tabs Styling */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px 10px;
+            background-color: #334155;
+            color: #cbd5e1;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active.enhancer { background-color: #16a34a; color: white; }
+        .tab-btn.active.analyzer { background-color: #2563eb; color: white; }
+        .tab-btn.active.video { background-color: #9333ea; color: white; }
+
+        .tab-btn:hover {
+            filter: brightness(1.2);
+        }
+
+        /* Panel Styling */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #f8fafc;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            background-color: #0f172a;
+            border: 1px solid #475569;
+            color: white;
+            border-radius: 8px;
+            font-size: 1.05em;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+
+        .btn-green { background-color: #16a34a; box-shadow: 0 4px 10px rgba(22, 163, 74, 0.3); }
+        .btn-blue { background-color: #2563eb; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3); }
+        .btn-purple { background-color: #9333ea; box-shadow: 0 4px 10px rgba(147, 51, 234, 0.3); }
+
+        .generate-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+        /* Output Box */
+        .output-box {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #0f172a;
+            border: 2px dashed #475569;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .output-text {
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: #e2e8f0;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+
+        .copy-btn {
+            background-color: #fbbf24;
+            color: #0f172a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover { background-color: #f59e0b; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🎁 NPA Premium Gems</h1>
+        <p>3 Bonus Tools Eksklusif Penunjang Konten AI Viral</p>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active enhancer" onclick="openTab('enhancer', this)">1. Prompt Enhancer</button>
+        <button class="tab-btn analyzer" onclick="openTab('analyzer', this)">2. Image Analyzer</button>
+        <button class="tab-btn video" onclick="openTab('video', this)">3. Video Prompt</button>
+    </div>
+
+    <!-- TOOL 1: PROMPT ENHANCER PRO -->
+    <div id="enhancer" class="tab-content active">
+        <div class="form-group">
+            <label>Ide Dasar Gambar (Bisa Bahasa Indonesia)</label>
+            <input type="text" id="basicPrompt" placeholder="Contoh: Kucing duduk di atas atap...">
+        </div>
+        <div class="form-group">
+            <label>Gaya Visual Tambahan</label>
+            <select id="styleEnhance">
+                <option value="cinematic lighting, hyper-realistic, 8k resolution, masterpiece, shot on 35mm lens, depth of field">Cinematic & Realistis</option>
+                <option value="anime style, Studio Ghibli, highly detailed, vibrant colors, magical lighting">Anime / Ilustrasi Ghibli</option>
+                <option value="3D render, Unreal Engine 5, octane render, soft studio lighting, cute">3D Render (Pixar/Disney)</option>
+            </select>
+        </div>
+        <button class="generate-btn btn-green" onclick="generateEnhancer()">SULAP JADI ULTRA DETAIL ✨</button>
+        
+        <div class="output-box" id="outEnhancer">
+            <div class="output-text" id="textEnhancer"></div>
+            <button class="copy-btn" onclick="copyText('textEnhancer')">📋 Salin Prompt</button>
+        </div>
+    </div>
+
+    <!-- TOOL 2: IMAGE TO PROMPT ANALYZER -->
+    <div id="analyzer" class="tab-content">
+        <p style="color: #94a3b8; font-size: 0.9em; margin-bottom: 20px;">
+            💡 <strong>Cara Pakai:</strong> Hasilkan meta-prompt di bawah ini, lalu tempelkan (paste) beserta gambar referensimu ke ChatGPT (GPT-4) atau Gemini untuk dibedah.
+        </p>
+        <div class="form-group">
+            <label>Target AI Gambar yang Akan Digunakan Nanti</label>
+            <select id="targetAI">
+                <option value="Midjourney v6">Midjourney v6</option>
+                <option value="DALL-E 3">DALL-E 3 (Bing Image Creator)</option>
+                <option value="Leonardo AI">Leonardo AI</option>
+            </select>
+        </div>
+        <button class="generate-btn btn-blue" onclick="generateAnalyzer()">BUAT PERINTAH ANALISIS 🔍</button>
+        
+        <div class="output-box" id="outAnalyzer">
+            <div class="output-text" id="textAnalyzer"></div>
+            <button class="copy-btn" onclick="copyText('textAnalyzer')">📋 Salin Teks Meta-Prompt</button>
+        </div>
+    </div>
+
+    <!-- TOOL 3: AI VIDEO PROMPT GENERATOR -->
+    <div id="video" class="tab-content">
+        <div class="form-group">
+            <label>Adegan Utama (Contoh: Mobil sport melaju di jalanan hujan)</label>
+            <input type="text" id="videoScene" placeholder="Ketik adegan videonya...">
+        </div>
+        <div class="form-group">
+            <label>Pergerakan Kamera (Camera Motion)</label>
+            <select id="cameraMotion">
+                <option value="Slow tracking shot, cinematic panning">Tracking Shot (Mulus & Sinematik)</option>
+                <option value="Drone aerial shot, high altitude revealing landscape">Drone Shot (Tampak Atas)</option>
+                <option value="Handheld camera, shaky, dynamic action">Handheld (Goyang & Dinamis)</option>
+                <option value="Extreme close-up, macro photography, shallow depth of field">Close Up (Fokus Objek)</option>
+            </select>
+        </div>
+        <button class="generate-btn btn-purple" onclick="generateVideo()">RACIK PROMPT VIDEO SORA/VEO 🎥</button>
+        
+        <div class="output-box" id="outVideo">
+            <div class="output-text" id="textVideo"></div>
+            <button class="copy-btn" onclick="copyText('textVideo')">📋 Salin Prompt Video</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Tab Navigation Logic
+    function openTab(tabName, elmnt) {
+        let i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active", "enhancer", "analyzer", "video");
+            tablinks[i].style.backgroundColor = "#334155";
+            tablinks[i].style.color = "#cbd5e1";
+        }
+        
+        document.getElementById(tabName).style.display = "block";
+        elmnt.classList.add("active", tabName);
+        
+        // Atur warna tombol tab aktif
+        if(tabName === 'enhancer') elmnt.style.backgroundColor = "#16a34a";
+        if(tabName === 'analyzer') elmnt.style.backgroundColor = "#2563eb";
+        if(tabName === 'video') elmnt.style.backgroundColor = "#9333ea";
+        elmnt.style.color = "white";
+    }
+
+    // Generate Enhancer
+    function generateEnhancer() {
+        const basic = document.getElementById('basicPrompt').value;
+        const style = document.getElementById('styleEnhance').value;
+        if(!basic) { alert("Isi dulu ide dasarnya ya, beb!"); return; }
+        
+        const finalPrompt = `Create a highly detailed image of: ${basic}. ${style}. Ensure maximum quality, intricate details, and perfect composition.`;
+        document.getElementById('textEnhancer').innerText = finalPrompt;
+        document.getElementById('outEnhancer').style.display = 'block';
+    }
+
+    // Generate Analyzer Meta-Prompt
+    function generateAnalyzer() {
+        const target = document.getElementById('targetAI').value;
+        const finalPrompt = `Tolong bertindak sebagai ahli Prompt Engineer. Analisis gambar yang saya lampirkan ini dengan sangat teliti. Bedah seluruh elemen visualnya mulai dari: subjek utama, ekspresi, tata letak, pencahayaan (lighting), jenis warna (color grading), suasana (mood), hingga perkiraan jenis lensa dan sudut kamera (angle). \n\nSetelah itu, terjemahkan analisis tersebut ke dalam bahasa Inggris menjadi satu prompt visual yang sempurna, profesional, dan siap pakai agar saya bisa mereplikasi gambar ini menggunakan AI ${target}.`;
+        
+        document.getElementById('textAnalyzer').innerText = finalPrompt;
+        document.getElementById('outAnalyzer').style.display = 'block';
+    }
+
+    // Generate Video Prompt
+    function generateVideo() {
+        const scene = document.getElementById('videoScene').value;
+        const camera = document.getElementById('cameraMotion').value;
+        if(!scene) { alert("Isi adegannya dulu, beb!"); return; }
+        
+        const finalPrompt = `${camera}. A highly detailed cinematic video shot of ${scene}. Photorealistic, ultra-realistic motion, natural physics, consistent lighting, high dynamic range, visually stunning, shot on RED Digital Cinema camera, 8k resolution, 60fps, seamless looping.`;
+        document.getElementById('textVideo').innerText = finalPrompt;
+        document.getElementById('outVideo').style.display = 'block';
+    }
+
+    // Fallback Copy Function
+    function copyText(elementId) {
+        const textToCopy = document.getElementById(elementId).innerText;
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                alert('Berhasil disalin! Siap dieksekusi.');
+            }, function(err) {
+                fallbackCopy(textToCopy);
+            });
+        } else {
+            fallbackCopy(textToCopy);
+        }
+    }
+
+    function fallbackCopy(text) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            if(successful) {
+                alert('Berhasil disalin (menggunakan sistem fallback alternatif)!');
+            } else {
+                alert('Gagal menyalin, silakan blok teks manual ya.');
+            }
+        } catch (err) {
+            alert('Browser tidak mendukung, silakan salin manual.');
+        }
+        document.body.removeChild(textArea);
+    }
+</script>
+
+</body>
+          </html>
+  
