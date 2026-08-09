@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TULISIN AJA - Ubah Teks Jadi Visual Catatan Tangan Realistis</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f4f7f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #0d4a8e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.1em;
+            font-weight: 300;
+        }
+
+        .pen-icon {
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        /* Tool Interface Section */
+        .tool-panel {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 20px;
+        }
+
+        .input-controls {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+            resize: vertical;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .generate-btn {
+            background-color: #f7b731;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(247, 183, 49, 0.4);
+            transition: all 0.2s;
+        }
+
+        .generate-btn:hover {
+            background-color: #ef9f1f;
+            transform: translateY(-2px);
+        }
+
+        /* Output Area */
+        .output-panel {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+            border-radius: 15px;
+            padding: 20px;
+            background-color: #fafafa;
+        }
+
+        .output-placeholder {
+            text-align: center;
+            color: #888;
+        }
+
+        .output-placeholder h3 {
+            margin: 0;
+        }
+
+        .generated-image-container {
+            display: none;
+            width: 100%;
+            text-align: center;
+        }
+
+        .generated-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .actions-bar {
+            display: none;
+            gap: 10px;
+            margin-top: 15px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .action-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .download-btn {
+            background-color: #2e7d32;
+            color: white;
+        }
+
+        .posting-btn {
+            background-color: #0d4a8e;
+            color: white;
+        }
+
+        /* Loading Spinner */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0d4a8e;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Info Section */
+        .info-panel {
+            margin-top: 30px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .info-panel h2 {
+            margin-top: 0;
+            color: #0d4a8e;
+        }
+
+        .benefits-list {
+            list-style-type: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .benefits-list li {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: start;
+            gap: 10px;
+        }
+
+        .benefits-list li:nth-child(2) {
+            background-color: #fff9c4;
+        }
+        
+        .benefits-list li:nth-child(3) {
+            background-color: #f8bbd0;
+        }
+
+        .benefit-icon {
+            font-size: 1.2em;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1><span class="pen-icon">✒️</span> TULISIN AJA</h1>
+        <p>Ubah Teks Jadi Visual Catatan Tangan Realistis</p>
+    </header>
+
+    <div class="tool-panel">
+        <div class="input-controls">
+            <div class="form-group">
+                <label for="topicInput">Topik Konten (contoh: "Inflasi untuk pemula")</label>
+                <textarea id="topicInput" placeholder="Tulis topiknya di sini, beb..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="ratioSelect">Pilih Aspek Rasio (9:16 untuk Reels/TikTok)</label>
+                <select id="ratioSelect">
+                    <option value="9:16">9:16 (Vertikal)</option>
+                    <option value="1:1">1:1 (Kotak)</option>
+                    <option value="16:9">16:9 (Horizontal)</option>
+                </select>
+            </div>
+            <button class="generate-btn" id="generateBtn">TULISIN! ⚡</button>
+        </div>
+
+        <div class="output-panel" id="outputPanel">
+            <div class="loader" id="loader"></div>
+            <div class="output-placeholder" id="placeholderText">
+                <h3>👇🏻 Catatan Pro Kamu Muncul Di Sini 👇🏻</h3>
+                <p>Silakan tulis topik dan klik tombol.</p>
+            </div>
+            <div class="generated-image-container" id="imageContainer">
+                <img src="" alt="Catatan Tangan Pro Anda" class="generated-image" id="outputImage">
+                <div class="actions-bar" id="actionsBar">
+                    <button class="action-btn download-btn" id="downloadBtn">📥 Unduh Visual</button>
+                    <button class="action-btn posting-btn">🔗 Posting</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-panel">
+        <h2>🔥 Keunggulan Tulisin Aja</h2>
+        <ul class="benefits-list">
+            <li><span class="benefit-icon">⚡</span><div><strong>Instan Tanpa Prompt.</strong> Hasil langsung jadi, tanpa perlu repot tulis kata kunci detail.</div></li>
+            <li><span class="benefit-icon">🎨</span><div><strong>Gaya Visual Realistis.</strong> Catatan tangan tampak nyata dengan ink bleed dan tekstur kertas.</div></li>
+            <li><span class="benefit-icon">🧠</span><div><strong>Materi Dari AI.</strong> Tulis topik, AI buatkan konten edukasinya secara otomatis.</div></li>
+            <li><span class="benefit-icon">✅</span><div><strong>Hasil Konsisten.</strong> Visual catatan selalu rapi, terstruktur, dan siap pakai.</div></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    document.getElementById('generateBtn').addEventListener('click', function() {
+        const topic = document.getElementById('topicInput').value;
+        const loader = document.getElementById('loader');
+        const placeholderText = document.getElementById('placeholderText');
+        const imageContainer = document.getElementById('imageContainer');
+        const outputImage = document.getElementById('outputImage');
+        const actionsBar = document.getElementById('actionsBar');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        if (!topic) {
+            alert('Tulis topiknya dulu dong, beb!');
+            return;
+        }
+
+        // Simulasikan proses 'Tulisin Aja'
+        placeholderText.style.display = 'none';
+        loader.style.display = 'block';
+        imageContainer.style.display = 'none';
+        actionsBar.style.display = 'none';
+
+        setTimeout(function() {
+            // Ini adalah contoh hasil statis. Di sistem asli, ini akan memanggil API Tulisin Pro.
+            outputImage.src = 'image_6.png'; // PENTING: Ganti dengan link gambar hasil generasimu.
+            downloadBtn.onclick = function() {
+                window.open('image_6.png', '_blank'); // PENTING: Ganti dengan link gambar yang sama.
+            };
+
+            loader.style.display = 'none';
+            imageContainer.style.display = 'block';
+            actionsBar.style.display = 'flex';
+        }, 3000); // Waktu simulasi 3 detik
+    });
+</script>
+
+</body>
+</html>
