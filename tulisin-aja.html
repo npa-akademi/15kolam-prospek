@@ -10,6 +10,7 @@
             margin: 0;
             background-color: #f4f7f9;
             color: #333;
+            line-height: 1.6;
         }
 
         .container {
@@ -21,7 +22,7 @@
         header {
             background-color: #0d4a8e;
             color: white;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
             border-bottom-left-radius: 15px;
             border-bottom-right-radius: 15px;
@@ -34,6 +35,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 10px;
         }
 
         header p {
@@ -48,15 +50,21 @@
             border-radius: 15px;
             padding: 30px;
             margin-top: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
 
         .input-controls {
             display: flex;
             flex-direction: column;
+            gap: 18px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
 
@@ -64,6 +72,7 @@
             font-weight: bold;
             display: block;
             margin-bottom: 8px;
+            color: #0d4a8e;
         }
 
         .form-group textarea {
@@ -75,9 +84,10 @@
             font-size: 1em;
             resize: vertical;
             box-sizing: border-box;
+            font-family: inherit;
         }
 
-        .form-group select {
+        .form-group select, .form-group input[type="text"] {
             width: 100%;
             padding: 12px;
             border: 1px solid #ccc;
@@ -85,33 +95,59 @@
             font-size: 1em;
             cursor: pointer;
             box-sizing: border-box;
+            font-family: inherit;
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
         }
 
         .generate-btn {
             background-color: #f7b731;
-            color: #333;
+            color: #2d3436;
             border: none;
-            padding: 15px 30px;
+            padding: 16px 30px;
             font-size: 1.3em;
             font-weight: bold;
             border-radius: 10px;
             cursor: pointer;
             width: 100%;
-            box-shadow: 0 4px 6px rgba(247, 183, 49, 0.4);
+            box-shadow: 0 4px 6px rgba(247, 183, 49, 0.3);
             transition: all 0.2s;
+            margin-top: 10px;
         }
 
         .generate-btn:hover {
             background-color: #ef9f1f;
             transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(247, 183, 49, 0.4);
         }
 
         /* Output Area */
         .output-panel {
             border: 2px dashed #0d4a8e;
             border-radius: 15px;
-            padding: 20px;
-            background-color: #e8f4fd;
+            padding: 25px;
+            background-color: #f0f7ff;
             display: none;
             flex-direction: column;
             gap: 15px;
@@ -125,20 +161,22 @@
 
         .prompt-result {
             background-color: #fff;
-            padding: 15px;
-            border-radius: 8px;
+            padding: 20px;
+            border-radius: 10px;
             border: 1px solid #b6d4fe;
-            font-family: monospace;
-            font-size: 1.1em;
-            line-height: 1.5;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 1.05em;
+            line-height: 1.6;
             white-space: pre-wrap;
             word-wrap: break-word;
+            color: #2c3e50;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .action-btn {
             background-color: #2e7d32;
             color: white;
-            padding: 12px 20px;
+            padding: 14px 20px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -146,36 +184,88 @@
             font-size: 1.1em;
             text-align: center;
             transition: background-color 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
         }
 
         .action-btn:hover {
             background-color: #1b5e20;
         }
 
+        @media (max-width: 600px) {
+            .form-row, .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>✒️ TULISIN AJA</h1>
-        <p>Penghasil Prompt Visual Catatan Tangan Realistis</p>
+        <h1><span style="font-size: 1.2em;">📄</span> TULISIN AJA</h1>
+        <p>Penghasil Prompt Visual Catatan Edukasi Kustom</p>
     </header>
 
     <div class="tool-panel">
         <div class="input-controls">
+            
             <div class="form-group">
-                <label for="topicInput">Topik Konten (contoh: "Inflasi untuk pemula")</label>
-                <textarea id="topicInput" placeholder="Ketik topik materi di sini..."></textarea>
+                <label for="topicInput">Topik Materi Utama</label>
+                <textarea id="topicInput" placeholder="Contoh: Manfaat Kerja Bakti untuk Lingkungan"></textarea>
             </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="paperSelect">Jenis Kertas</label>
+                    <select id="paperSelect">
+                        <option value="buku">Buku Catatan Spiral (Notebook)</option>
+                        <option value="kertas">Selembar Kertas HVS/Grid (Loose Sheet)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="colorSelect">Warna Brand (Aksen Visual)</label>
+                    <select id="colorSelect">
+                        <option value="blue and yellow">Biru & Kuning (Seperti contoh)</option>
+                        <option value="green and orange">Hijau & Oranye</option>
+                        <option value="red and black">Merah & Hitam</option>
+                        <option value="purple and pink">Ungu & Pink</option>
+                        <option value="monochrome black and grey">Monokrom (Hitam Abu-abu)</option>
+                        <option value="colorful pastel">Pastel Warna-Warni</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Tambahan Elemen Visual Edukasi</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="chkIkon" checked> Ikon & Simbol Visual
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="chkStruktur" checked> Mind Map & Struktur Info
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="chkElemen" checked> Kotak Teks & Panah
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="chkDoodle" checked> Doodle/Sketsa Pendukung
+                    </label>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label for="ratioSelect">Pilih Aspek Rasio</label>
                 <select id="ratioSelect">
-                    <option value="--ar 9:16">9:16 (Vertikal - TikTok/Reels/Shorts)</option>
                     <option value="--ar 1:1">1:1 (Kotak - Instagram Post)</option>
+                    <option value="--ar 9:16">9:16 (Vertikal - TikTok/Reels/Shorts)</option>
                     <option value="--ar 16:9">16:9 (Horizontal - YouTube/Presentasi)</option>
                 </select>
             </div>
+
             <button class="generate-btn" id="generateBtn">BUAT PROMPT SEKARANG ⚡</button>
         </div>
 
@@ -191,22 +281,43 @@
     document.getElementById('generateBtn').addEventListener('click', function() {
         const topic = document.getElementById('topicInput').value.trim();
         const ratio = document.getElementById('ratioSelect').value;
+        const brandColor = document.getElementById('colorSelect').value;
+        const paperType = document.getElementById('paperSelect').value;
+        
         const outputPanel = document.getElementById('outputPanel');
         const promptResult = document.getElementById('promptResult');
 
         if (!topic) {
-            alert('Harap isi topik konten terlebih dahulu!');
+            alert('Harap isi topik materi terlebih dahulu ya!');
             return;
         }
 
-        // Template Prompt Super Detail dengan sentuhan visual kopi
-        const promptText = `A top-down realistic flatlay photography of an open spiral notebook lying on a clean modern wooden desk. The pages of the notebook contain neat, aesthetic handwritten notes, colorful educational mind maps, arrows, text boxes, and small doodles explaining the topic: "${topic}". The handwriting is perfectly legible, written with black ink, blue markers, and highlighted with yellow highlighters. A ceramic mug of black coffee with rising steam is visible on the edge of the desk. Photorealistic, 8k resolution, highly detailed, bright natural studio lighting. ${ratio}`;
+        // Logic Jenis Kertas
+        const paperText = paperType === 'buku' 
+            ? 'an open spiral notebook' 
+            : 'a single piece of neat loose paper';
+
+        // Logic Elemen Visual
+        let visuals = [];
+        if(document.getElementById('chkIkon').checked) visuals.push('icons');
+        if(document.getElementById('chkStruktur').checked) visuals.push('mind maps');
+        if(document.getElementById('chkElemen').checked) visuals.push('text boxes with arrows');
+        if(document.getElementById('chkDoodle').checked) visuals.push('supporting educational doodles');
+
+        let visualText = '';
+        if(visuals.length > 0) {
+            visualText = `The layout is highly structured and attractive, incorporating ${visuals.join(', ')}.`;
+        }
+
+        // Racikan Prompt Utama 
+        // (sudah disesuaikan dengan elemen visual kopi favoritmu di meja untuk estetika)
+        const promptText = `A top-down realistic flatlay photography of ${paperText} lying on a clean modern wooden desk. The page contains neat, aesthetic handwritten educational notes explaining the topic: "${topic}". ${visualText} The text is perfectly legible, written with black ink, while all highlights, drawn shapes, boxes, and visual accents strictly use a ${brandColor} brand color palette. A ceramic mug of black coffee with rising steam, some aesthetic pens, and reading glasses are visible on the desk. Photorealistic, 8k resolution, highly detailed, bright natural studio lighting. ${ratio}`;
 
         promptResult.textContent = promptText;
         outputPanel.style.display = 'flex';
     });
 
-    // Fungsi Salin (Copy) dengan mekanisme Fallback
+    // Fungsi Salin (Copy) dengan mekanisme Fallback 
     document.getElementById('copyBtn').addEventListener('click', function() {
         const textToCopy = document.getElementById('promptResult').textContent;
 
