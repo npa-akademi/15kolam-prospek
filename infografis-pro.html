@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TULISIN INFOGRAFIS PRO - AI Prompt Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #121826;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #1e293b;
+            color: #38bdf8;
+            padding: 25px;
+            text-align: center;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            border: 1px solid #334155;
+            border-top: none;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.1em;
+            color: #94a3b8;
+        }
+
+        /* Tool Interface Section */
+        .tool-panel {
+            background-color: #1e293b;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            border: 1px solid #334155;
+        }
+
+        .input-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #f8fafc;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            background-color: #0f172a;
+            border: 1px solid #475569;
+            color: #f8fafc;
+            border-radius: 8px;
+            font-size: 1.05em;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            background-color: #0f172a;
+            border: 1px solid #475569;
+            color: #f8fafc;
+            border-radius: 8px;
+            font-size: 1.05em;
+            cursor: pointer;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .generate-btn {
+            background-color: #38bdf8;
+            color: #0f172a;
+            border: none;
+            padding: 16px 30px;
+            font-size: 1.2em;
+            font-weight: 800;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(56, 189, 248, 0.2);
+            transition: all 0.2s;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .generate-btn:hover {
+            background-color: #0ea5e9;
+            transform: translateY(-2px);
+        }
+
+        /* Output Area */
+        .output-panel {
+            border: 2px dashed #475569;
+            border-radius: 15px;
+            padding: 25px;
+            background-color: #0f172a;
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .prompt-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .prompt-section h3 {
+            margin: 0;
+            color: #38bdf8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1em;
+        }
+
+        .prompt-result {
+            background-color: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.95em;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #e2e8f0;
+        }
+
+        .action-btn {
+            background-color: #475569;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: background-color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-btn:hover {
+            background-color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>📊 INFOGRAFIS PRO</h1>
+        <p>Generator Prompt AI Infografis 3D & Carousel Super Detail</p>
+    </header>
+
+    <div class="tool-panel">
+        <div class="input-controls">
+            
+            <div class="form-group">
+                <label for="topicInput">Tema Infografis (Contoh: Efek Makan Mie Instan)</label>
+                <input type="text" id="topicInput" placeholder="Ketik tema infografis di sini...">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="styleSelect">Gaya Desain Visual</label>
+                    <select id="styleSelect">
+                        <option value="modern 3D UI, vibrant colors, clear layout, soft shadows">3D Modern (Vibrant & Bersih)</option>
+                        <option value="dark mode, neon accents, high contrast, sleek tech style">Dark Mode (Elegan & Kontras Tinggi)</option>
+                        <option value="split-screen comparison, bold typography, fitness style">Versus / Komparasi (Kiri vs Kanan)</option>
+                        <option value="minimalist corporate, flat design, clean geometric">Minimalis & Profesional</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ratioSelect">Format & Rasio</label>
+                    <select id="ratioSelect">
+                        <option value="--ar 9:16">9:16 (Instagram Reels / TikTok / Story)</option>
+                        <option value="--ar 4:5">4:5 (Instagram Portrait Feed)</option>
+                        <option value="--ar 16:9">16:9 (Presentasi / YouTube)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="generate-btn" id="generateBtn">BUAT PROMPT SEKARANG 🚀</button>
+        </div>
+
+        <div class="output-panel" id="outputPanel">
+            
+            <!-- Output JSON Teks -->
+            <div class="prompt-section">
+                <h3>
+                    <span>1️⃣ PROMPT TEKS (Copy ke ChatGPT/Claude)</span>
+                    <button class="action-btn" onclick="copyText('promptJSON')">📋 Copy JSON</button>
+                </h3>
+                <div class="prompt-result" id="promptJSON"></div>
+            </div>
+
+            <!-- Output Visual Image -->
+            <div class="prompt-section">
+                <h3>
+                    <span>2️⃣ PROMPT VISUAL (Copy ke Midjourney/Bing AI)</span>
+                    <button class="action-btn" onclick="copyText('promptVisual')">📋 Copy Visual</button>
+                </h3>
+                <div class="prompt-result" id="promptVisual"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('generateBtn').addEventListener('click', function() {
+        const topic = document.getElementById('topicInput').value.trim();
+        const style = document.getElementById('styleSelect').value;
+        const ratio = document.getElementById('ratioSelect').value;
+        
+        if (!topic) {
+            alert('Beb, jangan lupa isi tema infografisnya dulu ya!');
+            return;
+        }
+
+        // 1. Generate Prompt JSON untuk Struktur Teks (ChatGPT)
+        const jsonPrompt = `Bertindaklah sebagai ahli pembuat konten infografis. Buatkan saya struktur konten edukasi yang detail dan menarik dengan tema: "${topic}". 
+Tolong berikan output HANYA dalam format JSON dengan struktur berikut:
+{
+  "infographic_title": "Judul Utama yang Menarik",
+  "subtitle": "Subjudul penjelasan singkat",
+  "points": [
+    {
+      "number": 1,
+      "title": "Judul Poin 1",
+      "description": "Penjelasan singkat 1-2 kalimat",
+      "data_visualization_idea": "Saran visual (misal: grafik bar 80%, ikon jam, atau logo api)"
+    },
+    // Buat hingga 5 poin
+  ],
+  "footer_conclusion": "Kesimpulan atau Call To Action (CTA)"
+}`;
+
+        // 2. Generate Prompt Visual (Midjourney/Bing)
+        const visualPrompt = `A highly detailed professional infographic poster about "${topic}". ${style}. The layout is divided into highly structured sections. At the top, a large bold typography title. Below it, a vertical list of 5 key points. Each point is enclosed in a modern UI card with a prominent number badge on the left, descriptive text, and a highly detailed 3D icon or miniature chart (like a progress bar, heart rate, or battery indicator) on the right. A central 3D character illustration is placed near the title expressing the theme. High resolution, crisp typography, clean UI/UX design, highly readable, 8k. ${ratio}`;
+
+        document.getElementById('promptJSON').textContent = jsonPrompt;
+        document.getElementById('promptVisual').textContent = visualPrompt;
+        
+        document.getElementById('outputPanel').style.display = 'flex';
+    });
+
+    // Fungsi Salin (Copy) dengan Fallback Tahan Banting
+    function copyText(elementId) {
+        const textToCopy = document.getElementById(elementId).textContent;
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                alert('Teks berhasil disalin, beb! Siap di-paste.');
+            }, function(err) {
+                fallbackCopy(textToCopy);
+            });
+        } else {
+            fallbackCopy(textToCopy);
+        }
+    }
+
+    function fallbackCopy(text) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            if(successful) {
+                alert('Disalin menggunakan mode alternatif! Tinggal paste.');
+            } else {
+                alert('Ups, auto-copy gagal. Blok teksnya dan salin manual ya, beb.');
+            }
+        } catch (err) {
+            alert('Browser tidak mendukung copy otomatis. Salin manual ya.');
+        }
+        document.body.removeChild(textArea);
+    }
+</script>
+
+</body>
+</html>
