@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSTER DAKWAH PRO - Generator Visual & Motion (Bonus NPA Smart System)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f6f8ec; /* Warna latar krem/hijau pastel estetik */
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #1a3636; /* Hijau tua elegan */
+            color: #d4af37; /* Aksen Emas */
+            padding: 25px;
+            text-align: center;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.1em;
+            color: #edf2f7;
+            font-weight: 300;
+        }
+
+        /* Tool Interface Section */
+        .tool-panel {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-top: 4px solid #d4af37;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #1a3636;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1.05em;
+            box-sizing: border-box;
+            background-color: #f8fafc;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1.05em;
+            cursor: pointer;
+            box-sizing: border-box;
+            background-color: #f8fafc;
+        }
+
+        .generate-btn {
+            background-color: #d4af37;
+            color: #1a3636;
+            border: none;
+            padding: 16px 30px;
+            font-size: 1.2em;
+            font-weight: 800;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(212, 175, 55, 0.3);
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+
+        .generate-btn:hover {
+            background-color: #c09e30;
+            transform: translateY(-2px);
+        }
+
+        /* Output Area */
+        .output-panel {
+            border: 2px dashed #1a3636;
+            border-radius: 15px;
+            padding: 25px;
+            background-color: #f0f4f4;
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .prompt-section h3 {
+            margin: 0 0 10px 0;
+            color: #1a3636;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1em;
+        }
+
+        .prompt-result {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e0;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.95em;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            color: #2d3748;
+        }
+
+        .action-btn {
+            background-color: #1a3636;
+            color: #d4af37;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: background-color 0.2s;
+        }
+
+        .action-btn:hover {
+            background-color: #234747;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🌙 POSTER DAKWAH PRO</h1>
+        <p>Generator Visual Estetik & Prompt Motion Video</p>
+    </header>
+
+    <div class="tool-panel">
+        <div class="form-group">
+            <label for="topicInput">Topik Kajian / Dakwah (Contoh: Bahaya Ghibah)</label>
+            <input type="text" id="topicInput" placeholder="Ketik topik poster di sini...">
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="styleSelect">Gaya Ilustrasi Karakter</label>
+                <select id="styleSelect">
+                    <option value="high quality Anime style illustration, detailed shading">Gaya Anime (Jepang)</option>
+                    <option value="semi-realistic 3D rendering, octane render, soft lighting">Gaya 3D (Semi-Realistis)</option>
+                    <option value="minimalist flat vector illustration, clean lines">Gaya Vektor Minimalis</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="ratioSelect">Pilih Aspek Rasio</label>
+                <select id="ratioSelect">
+                    <option value="--ar 4:5">4:5 (Instagram Feed Estetik)</option>
+                    <option value="--ar 9:16">9:16 (Motion Poster Vertikal / Reels)</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="generate-btn" id="generateBtn">GENERATE POSTER & MOTION ✨</button>
+        
+        <div class="output-panel" id="outputPanel">
+            <!-- Output Poster Statis -->
+            <div class="prompt-section">
+                <h3>
+                    <span>🖼️ 1. PROMPT GAMBAR (Untuk Midjourney / Bing AI)</span>
+                    <button class="action-btn" onclick="copyText('promptImage')">📋 Copy Prompt</button>
+                </h3>
+                <div class="prompt-result" id="promptImage"></div>
+            </div>
+
+            <!-- Output Motion Poster -->
+            <div class="prompt-section">
+                <h3>
+                    <span>🎬 2. PROMPT MOTION (Untuk AI Video)</span>
+                    <button class="action-btn" onclick="copyText('promptVideo')">📋 Copy Motion</button>
+                </h3>
+                <div class="prompt-result" id="promptVideo"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('generateBtn').addEventListener('click', function() {
+        const topic = document.getElementById('topicInput').value.trim();
+        const style = document.getElementById('styleSelect').value;
+        const ratio = document.getElementById('ratioSelect').value;
+        
+        if (!topic) {
+            alert('Afwan, tolong isi topik dakwahnya terlebih dahulu ya!');
+            return;
+        }
+
+        // 1. Generate Prompt Gambar (Poster Statis)
+        const imagePrompt = `A stunning Islamic aesthetic poster about "${topic}". ${style}. The main focus is a relatable young character expressing the theme. The background contains highly detailed symbolic elements related to the topic, with dramatic atmospheric lighting (cinematic lighting, glowing accents). There is clear negative space at the top and bottom with beautiful bold typography elements integrated into the design. High contrast, highly detailed, visually striking, 8k resolution. ${ratio}`;
+
+        // 2. Generate Prompt Motion (Video AI Animasi)
+        const videoPrompt = `Cinemagraph motion poster effect. The main character in the poster has subtle idle movements, like breathing gently. Hair and clothes are swaying slightly in a soft breeze. The atmospheric lighting in the background is dynamic, with glowing particles floating slowly in the air. Smooth, seamless looping animation, ultra-realistic motion, 4k 60fps.`;
+
+        document.getElementById('promptImage').textContent = imagePrompt;
+        document.getElementById('promptVideo').textContent = videoPrompt;
+        
+        document.getElementById('outputPanel').style.display = 'flex';
+    });
+
+    // Fungsi Salin (Copy) dengan Fallback Mechanism yang sudah disempurnakan
+    function copyText(elementId) {
+        const textToCopy = document.getElementById(elementId).textContent;
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                alert('Alhamdulillah, prompt berhasil disalin! Silakan paste di AI tujuan.');
+            }, function(err) {
+                fallbackCopy(textToCopy);
+            });
+        } else {
+            fallbackCopy(textToCopy);
+        }
+    }
+
+    function fallbackCopy(text) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            if(successful) {
+                alert('Disalin menggunakan mode fallback! Silakan paste.');
+            } else {
+                alert('Gagal menyalin otomatis. Silakan blok teksnya dan salin manual.');
+            }
+        } catch (err) {
+            alert('Browser tidak mendukung copy otomatis. Silakan salin manual.');
+        }
+        document.body.removeChild(textArea);
+    }
+</script>
+
+</body>
+  </html>
+
