@@ -199,37 +199,48 @@
 
 <div class="container">
     <header>
-        <span class="kicker-text">Bonus NPA Smart System</span>
+        <span class="kicker-text">Bonus Eksklusif</span>
         <h1>Poster Dakwah Pro</h1>
-        <p>Gunakan prompt di bawah ini ke AI Gambar dan AI Video favoritmu untuk mengubah ide menjadi poster statis dan bergerak secara instan.</p>
+        <p>Hasilkan prompt super presisi untuk mengubah ide tulisanmu menjadi karya visual statis dan motion video yang viral.</p>
     </header>
 
     <div class="tool-panel">
         <div class="form-group">
-            <label for="topicInput">Topik Kajian / Dakwah (Contoh: Bahaya Judi Online)</label>
+            <label for="topicInput">Topik Kajian / Dakwah (Contoh: Pentingnya Sholat Berjamaah)</label>
             <input type="text" id="topicInput" placeholder="Ketik topik poster di sini...">
         </div>
 
-        <div class="form-group">
-            <label for="layoutSelect">Pilih Jenis Layout Poster</label>
-            <select id="layoutSelect">
-                <option value="infografis">Layout Infografis Panjang (Berisi Poin Data, Ikon & Ayat)</option>
-                <option value="ringkas">Layout Feed Ringkas (1 Ilustrasi Utama & Ruang Judul)</option>
-            </select>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="layoutSelect">Jenis Layout Poster</label>
+                <select id="layoutSelect">
+                    <option value="infografis">Infografis Panjang (Berisi Poin Data & Ikon)</option>
+                    <option value="ringkas">Feed Ringkas (1 Ilustrasi Utama & Judul Besar)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="fontSelect">Gaya Huruf (Tipografi)</label>
+                <select id="fontSelect">
+                    <option value="bold modern sans-serif typography, large thick block letters">Modern (Tebal & Tegas)</option>
+                    <option value="elegant classic serif typography, cinematic title text">Klasik (Elegan & Mewah)</option>
+                    <option value="dynamic 3D typography, bold extruded letters, glowing text">Teks 3D (Menonjol & Menyala)</option>
+                </select>
+            </div>
         </div>
 
         <div class="form-row">
             <div class="form-group">
                 <label for="styleSelect">Gaya Ilustrasi Karakter</label>
                 <select id="styleSelect">
-                    <option value="dark cinematic theme, hyper-realistic rendering, elegant gold and red accents">Gaya Sinematik Gelap (Emas & Merah)</option>
-                    <option value="high quality Anime style illustration, detailed shading">Gaya Anime (Jepang)</option>
-                    <option value="semi-realistic 3D rendering, octane render, soft lighting">Gaya 3D (Semi-Realistis)</option>
+                    <option value="dark cinematic theme, hyper-realistic rendering, elegant gold and red accents">Sinematik Gelap (Emas & Merah)</option>
+                    <option value="high quality Anime style illustration, detailed shading">Anime (Jepang)</option>
+                    <option value="semi-realistic 3D rendering, octane render, soft lighting">3D Semi-Realistis</option>
                 </select>
             </div>
             
             <div class="form-group">
-                <label for="ratioSelect">Pilih Aspek Rasio</label>
+                <label for="ratioSelect">Aspek Rasio Output</label>
                 <select id="ratioSelect">
                     <option value="--ar 9:16">9:16 (Vertikal Panjang / Infografis)</option>
                     <option value="--ar 4:5">4:5 (Instagram Feed Estetik)</option>
@@ -237,7 +248,7 @@
             </div>
         </div>
 
-        <button class="generate-btn" id="generateBtn">Generate Prompt</button>
+        <button class="generate-btn" id="generateBtn">Racik Prompt Sekarang</button>
         
         <div class="output-panel" id="outputPanel">
             <!-- Output Poster Statis -->
@@ -265,11 +276,12 @@
     document.getElementById('generateBtn').addEventListener('click', function() {
         const topic = document.getElementById('topicInput').value.trim();
         const layout = document.getElementById('layoutSelect').value;
+        const font = document.getElementById('fontSelect').value;
         const style = document.getElementById('styleSelect').value;
         const ratio = document.getElementById('ratioSelect').value;
         
         if (!topic) {
-            alert('Silakan isi topik dakwahnya terlebih dahulu ya.');
+            alert('Tolong ketik topiknya terlebih dahulu ya.');
             return;
         }
 
@@ -277,11 +289,9 @@
         let imagePrompt = "";
         
         if (layout === "infografis") {
-            // Prompt khusus Layout Panjang seperti referensi Gambar 2 (Judi Online)
-            imagePrompt = `A tall vertical Islamic infographic poster about "${topic}". ${style}. The layout is highly structured and divided into sections from top to bottom. Top section: A dramatic, highly detailed illustration representing the theme with atmospheric lighting. Middle section: A structured list of key points featuring minimalist glowing icons and neat text boxes. Bottom section: A solution or reminder panel arranged in clean columns. Professional UI/UX layout, striking typography placeholders, high contrast, visually stunning, 8k resolution. ${ratio}`;
+            imagePrompt = `A tall vertical Islamic infographic poster about "${topic}". ${style}. The layout is highly structured and divided into sections from top to bottom. Top section: A dramatic, highly detailed illustration representing the theme with atmospheric lighting. Middle section: A structured list of key points featuring minimalist glowing icons and neat text boxes. Bottom section: A solution or reminder panel arranged in clean columns. Professional UI/UX layout. Features ${font}. High contrast, highly detailed, visually stunning, 8k resolution. ${ratio}`;
         } else {
-            // Prompt khusus Layout Ringkas seperti referensi Gambar 1
-            imagePrompt = `A stunning Islamic aesthetic poster about "${topic}". ${style}. The main focus is a relatable young character expressing the theme. The background contains highly detailed symbolic elements related to the topic, with dramatic atmospheric lighting (cinematic lighting, glowing accents). There is clear negative space at the top and bottom with beautiful bold typography elements integrated into the design. High contrast, highly detailed, visually striking, 8k resolution. ${ratio}`;
+            imagePrompt = `A stunning Islamic aesthetic poster about "${topic}". ${style}. The main focus is a relatable young character expressing the theme. The background contains highly detailed symbolic elements related to the topic, with dramatic atmospheric lighting (cinematic lighting, glowing accents). There is clear negative space at the top and bottom. Features ${font} integrated seamlessly into the design. High contrast, highly detailed, visually striking, 8k resolution. ${ratio}`;
         }
 
         // 2. Generate Prompt Motion (Video AI Animasi)
@@ -323,17 +333,16 @@
         try {
             var successful = document.execCommand('copy');
             if(successful) {
-                alert('Teks berhasil disalin!');
+                alert('Teks berhasil disalin secara manual (fallback)!');
             } else {
-                alert('Gagal menyalin otomatis. Silakan salin manual.');
+                alert('Gagal menyalin otomatis. Silakan blok dan salin teksnya.');
             }
         } catch (err) {
-            alert('Browser tidak mendukung copy otomatis. Silakan salin manual.');
+            alert('Browser tidak mendukung copy otomatis. Silakan salin teks secara manual.');
         }
         document.body.removeChild(textArea);
     }
 </script>
 
 </body>
-        </html>
-
+</html>
