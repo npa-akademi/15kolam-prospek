@@ -11,7 +11,7 @@
         body {
             font-family: 'Nunito', sans-serif;
             margin: 0;
-            background-color: #fafafa; /* Latar belakang putih bersih/abu sangat terang */
+            background-color: #fafafa; 
             color: #475569;
             line-height: 1.6;
         }
@@ -31,7 +31,7 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 0.85em;
             font-weight: 700;
-            color: #d97706; /* Warna aksen emas/mustard */
+            color: #d97706; 
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 10px;
@@ -43,7 +43,7 @@
             margin: 0;
             font-size: 2.8em;
             font-weight: 900;
-            color: #1e293b; /* Warna Dark Navy / Biru Dongker Pekat */
+            color: #1e293b; 
             line-height: 1.2;
             letter-spacing: -1px;
         }
@@ -106,7 +106,7 @@
         }
 
         .generate-btn {
-            background-color: #1e293b; /* Tombol utama warna Dark Navy */
+            background-color: #1e293b; 
             color: #ffffff;
             font-family: 'Montserrat', sans-serif;
             border: none;
@@ -206,25 +206,33 @@
 
     <div class="tool-panel">
         <div class="form-group">
-            <label for="topicInput">Topik Kajian / Dakwah (Contoh: Bahaya Ghibah)</label>
+            <label for="topicInput">Topik Kajian / Dakwah (Contoh: Bahaya Judi Online)</label>
             <input type="text" id="topicInput" placeholder="Ketik topik poster di sini...">
+        </div>
+
+        <div class="form-group">
+            <label for="layoutSelect">Pilih Jenis Layout Poster</label>
+            <select id="layoutSelect">
+                <option value="infografis">Layout Infografis Panjang (Berisi Poin Data, Ikon & Ayat)</option>
+                <option value="ringkas">Layout Feed Ringkas (1 Ilustrasi Utama & Ruang Judul)</option>
+            </select>
         </div>
 
         <div class="form-row">
             <div class="form-group">
                 <label for="styleSelect">Gaya Ilustrasi Karakter</label>
                 <select id="styleSelect">
+                    <option value="dark cinematic theme, hyper-realistic rendering, elegant gold and red accents">Gaya Sinematik Gelap (Emas & Merah)</option>
                     <option value="high quality Anime style illustration, detailed shading">Gaya Anime (Jepang)</option>
                     <option value="semi-realistic 3D rendering, octane render, soft lighting">Gaya 3D (Semi-Realistis)</option>
-                    <option value="minimalist flat vector illustration, clean lines">Gaya Vektor Minimalis</option>
                 </select>
             </div>
             
             <div class="form-group">
                 <label for="ratioSelect">Pilih Aspek Rasio</label>
                 <select id="ratioSelect">
+                    <option value="--ar 9:16">9:16 (Vertikal Panjang / Infografis)</option>
                     <option value="--ar 4:5">4:5 (Instagram Feed Estetik)</option>
-                    <option value="--ar 9:16">9:16 (Motion Poster Vertikal)</option>
                 </select>
             </div>
         </div>
@@ -256,19 +264,28 @@
 <script>
     document.getElementById('generateBtn').addEventListener('click', function() {
         const topic = document.getElementById('topicInput').value.trim();
+        const layout = document.getElementById('layoutSelect').value;
         const style = document.getElementById('styleSelect').value;
         const ratio = document.getElementById('ratioSelect').value;
         
         if (!topic) {
-            alert('Silakan isi topik dakwahnya terlebih dahulu.');
+            alert('Silakan isi topik dakwahnya terlebih dahulu ya.');
             return;
         }
 
         // 1. Generate Prompt Gambar (Poster Statis)
-        const imagePrompt = `A stunning Islamic aesthetic poster about "${topic}". ${style}. The main focus is a relatable young character expressing the theme. The background contains highly detailed symbolic elements related to the topic, with dramatic atmospheric lighting (cinematic lighting, glowing accents). There is clear negative space at the top and bottom with beautiful bold typography elements integrated into the design. High contrast, highly detailed, visually striking, 8k resolution. ${ratio}`;
+        let imagePrompt = "";
+        
+        if (layout === "infografis") {
+            // Prompt khusus Layout Panjang seperti referensi Gambar 2 (Judi Online)
+            imagePrompt = `A tall vertical Islamic infographic poster about "${topic}". ${style}. The layout is highly structured and divided into sections from top to bottom. Top section: A dramatic, highly detailed illustration representing the theme with atmospheric lighting. Middle section: A structured list of key points featuring minimalist glowing icons and neat text boxes. Bottom section: A solution or reminder panel arranged in clean columns. Professional UI/UX layout, striking typography placeholders, high contrast, visually stunning, 8k resolution. ${ratio}`;
+        } else {
+            // Prompt khusus Layout Ringkas seperti referensi Gambar 1
+            imagePrompt = `A stunning Islamic aesthetic poster about "${topic}". ${style}. The main focus is a relatable young character expressing the theme. The background contains highly detailed symbolic elements related to the topic, with dramatic atmospheric lighting (cinematic lighting, glowing accents). There is clear negative space at the top and bottom with beautiful bold typography elements integrated into the design. High contrast, highly detailed, visually striking, 8k resolution. ${ratio}`;
+        }
 
         // 2. Generate Prompt Motion (Video AI Animasi)
-        const videoPrompt = `Cinemagraph motion poster effect. The main character in the poster has subtle idle movements, like breathing gently. Hair and clothes are swaying slightly in a soft breeze. The atmospheric lighting in the background is dynamic, with glowing particles floating slowly in the air. Smooth, seamless looping animation, ultra-realistic motion, 4k 60fps.`;
+        const videoPrompt = `Cinemagraph motion poster effect. The main illustration in the poster has subtle idle movements, like breathing gently. Hair and clothes are swaying slightly in a soft breeze. The atmospheric lighting in the background is dynamic, with glowing particles floating slowly in the air. Smooth, seamless looping animation, ultra-realistic motion, 4k 60fps.`;
 
         document.getElementById('promptImage').textContent = imagePrompt;
         document.getElementById('promptVideo').textContent = videoPrompt;
@@ -318,4 +335,5 @@
 </script>
 
 </body>
-</html>
+        </html>
+
