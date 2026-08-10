@@ -3,166 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POSTER DAKWAH PRO - Generator Visual & Motion (Bonus NPA Smart System)</title>
+    <title>POSTER DAKWAH PRO - Generator Visual & Motion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Nunito', sans-serif;
             margin: 0;
-            background-color: #f6f8ec; /* Warna latar krem/hijau pastel estetik */
-            color: #2d3748;
+            background-color: #fafafa; /* Latar belakang putih bersih/abu sangat terang */
+            color: #475569;
             line-height: 1.6;
         }
 
         .container {
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 800px;
+            margin: 40px auto;
             padding: 20px;
         }
 
         header {
-            background-color: #1a3636; /* Hijau tua elegan */
-            color: #d4af37; /* Aksen Emas */
-            padding: 25px;
             text-align: center;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            margin-bottom: 40px;
+        }
+
+        .kicker-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #d97706; /* Warna aksen emas/mustard */
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
         }
 
         header h1 {
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
-            font-size: 2.2em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            font-size: 2.8em;
+            font-weight: 900;
+            color: #1e293b; /* Warna Dark Navy / Biru Dongker Pekat */
+            line-height: 1.2;
+            letter-spacing: -1px;
         }
 
         header p {
-            margin: 5px 0 0;
+            margin: 15px auto 0;
             font-size: 1.1em;
-            color: #edf2f7;
-            font-weight: 300;
+            color: #64748b;
+            max-width: 600px;
         }
 
         /* Tool Interface Section */
         .tool-panel {
-            background-color: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-top: 25px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            border: 1px solid #f1f5f9;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            border-top: 4px solid #d4af37;
+            gap: 25px;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 20px;
         }
 
         .form-group label {
-            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             display: block;
-            margin-bottom: 8px;
-            color: #1a3636;
+            margin-bottom: 10px;
+            color: #1e293b;
+            font-size: 0.9em;
         }
 
-        .form-group input[type="text"] {
+        .form-group input[type="text"], .form-group select {
             width: 100%;
-            padding: 14px;
-            border: 1px solid #cbd5e0;
-            border-radius: 8px;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
             font-size: 1.05em;
             box-sizing: border-box;
             background-color: #f8fafc;
+            color: #0f172a;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input[type="text"]:focus, .form-group select:focus {
+            border-color: #1e293b;
         }
 
         .form-group select {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #cbd5e0;
-            border-radius: 8px;
-            font-size: 1.05em;
             cursor: pointer;
-            box-sizing: border-box;
-            background-color: #f8fafc;
         }
 
         .generate-btn {
-            background-color: #d4af37;
-            color: #1a3636;
+            background-color: #1e293b; /* Tombol utama warna Dark Navy */
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
             border: none;
-            padding: 16px 30px;
-            font-size: 1.2em;
-            font-weight: 800;
-            border-radius: 10px;
+            padding: 18px 30px;
+            font-size: 1.1em;
+            font-weight: 700;
+            border-radius: 14px;
             cursor: pointer;
             width: 100%;
-            box-shadow: 0 4px 6px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 20px rgba(30, 41, 59, 0.15);
             transition: all 0.2s;
-            margin-top: 10px;
+            margin-top: 15px;
+            letter-spacing: 0.5px;
         }
 
         .generate-btn:hover {
-            background-color: #c09e30;
-            transform: translateY(-2px);
+            background-color: #0f172a;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(30, 41, 59, 0.2);
         }
 
         /* Output Area */
         .output-panel {
-            border: 2px dashed #1a3636;
-            border-radius: 15px;
-            padding: 25px;
-            background-color: #f0f4f4;
+            border: 2px dashed #cbd5e1;
+            border-radius: 20px;
+            padding: 30px;
+            background-color: #f8fafc;
             display: none;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
+            margin-top: 10px;
         }
 
         .prompt-section h3 {
-            margin: 0 0 10px 0;
-            color: #1a3636;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0 0 15px 0;
+            color: #1e293b;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 1.1em;
+            font-size: 1.05em;
+            font-weight: 800;
         }
 
         .prompt-result {
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #cbd5e0;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
             font-family: Consolas, Monaco, monospace;
             font-size: 0.95em;
-            line-height: 1.6;
+            line-height: 1.7;
             white-space: pre-wrap;
-            color: #2d3748;
+            color: #334155;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .action-btn {
-            background-color: #1a3636;
-            color: #d4af37;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 6px;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            font-family: 'Montserrat', sans-serif;
+            padding: 10px 20px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
-            font-size: 0.9em;
-            transition: background-color 0.2s;
+            font-weight: 700;
+            font-size: 0.85em;
+            transition: all 0.2s;
         }
 
         .action-btn:hover {
-            background-color: #234747;
+            background-color: #e2e8f0;
+            border-color: #94a3b8;
         }
 
         @media (max-width: 600px) {
             .form-row {
                 grid-template-columns: 1fr;
+            }
+            header h1 {
+                font-size: 2.2em;
+            }
+            .tool-panel {
+                padding: 25px;
             }
         }
     </style>
@@ -171,8 +199,9 @@
 
 <div class="container">
     <header>
-        <h1>🌙 POSTER DAKWAH PRO</h1>
-        <p>Generator Visual Estetik & Prompt Motion Video</p>
+        <span class="kicker-text">Bonus NPA Smart System</span>
+        <h1>Poster Dakwah Pro</h1>
+        <p>Gunakan prompt di bawah ini ke AI Gambar dan AI Video favoritmu untuk mengubah ide menjadi poster statis dan bergerak secara instan.</p>
     </header>
 
     <div class="tool-panel">
@@ -195,19 +224,19 @@
                 <label for="ratioSelect">Pilih Aspek Rasio</label>
                 <select id="ratioSelect">
                     <option value="--ar 4:5">4:5 (Instagram Feed Estetik)</option>
-                    <option value="--ar 9:16">9:16 (Motion Poster Vertikal / Reels)</option>
+                    <option value="--ar 9:16">9:16 (Motion Poster Vertikal)</option>
                 </select>
             </div>
         </div>
 
-        <button class="generate-btn" id="generateBtn">GENERATE POSTER & MOTION ✨</button>
+        <button class="generate-btn" id="generateBtn">Generate Prompt</button>
         
         <div class="output-panel" id="outputPanel">
             <!-- Output Poster Statis -->
             <div class="prompt-section">
                 <h3>
-                    <span>🖼️ 1. PROMPT GAMBAR (Untuk Midjourney / Bing AI)</span>
-                    <button class="action-btn" onclick="copyText('promptImage')">📋 Copy Prompt</button>
+                    <span>1. PROMPT GAMBAR (Statis)</span>
+                    <button class="action-btn" onclick="copyText('promptImage')">Salin Teks</button>
                 </h3>
                 <div class="prompt-result" id="promptImage"></div>
             </div>
@@ -215,8 +244,8 @@
             <!-- Output Motion Poster -->
             <div class="prompt-section">
                 <h3>
-                    <span>🎬 2. PROMPT MOTION (Untuk AI Video)</span>
-                    <button class="action-btn" onclick="copyText('promptVideo')">📋 Copy Motion</button>
+                    <span>2. PROMPT VIDEO (Animasi Motion)</span>
+                    <button class="action-btn" onclick="copyText('promptVideo')">Salin Teks</button>
                 </h3>
                 <div class="prompt-result" id="promptVideo"></div>
             </div>
@@ -231,7 +260,7 @@
         const ratio = document.getElementById('ratioSelect').value;
         
         if (!topic) {
-            alert('Afwan, tolong isi topik dakwahnya terlebih dahulu ya!');
+            alert('Silakan isi topik dakwahnya terlebih dahulu.');
             return;
         }
 
@@ -247,13 +276,13 @@
         document.getElementById('outputPanel').style.display = 'flex';
     });
 
-    // Fungsi Salin (Copy) dengan Fallback Mechanism yang sudah disempurnakan
+    // Fungsi Salin (Copy) dengan Fallback Mechanism
     function copyText(elementId) {
         const textToCopy = document.getElementById(elementId).textContent;
 
         if (navigator.clipboard && window.isSecureContext) {
             navigator.clipboard.writeText(textToCopy).then(function() {
-                alert('Alhamdulillah, prompt berhasil disalin! Silakan paste di AI tujuan.');
+                alert('Teks berhasil disalin!');
             }, function(err) {
                 fallbackCopy(textToCopy);
             });
@@ -277,9 +306,9 @@
         try {
             var successful = document.execCommand('copy');
             if(successful) {
-                alert('Disalin menggunakan mode fallback! Silakan paste.');
+                alert('Teks berhasil disalin!');
             } else {
-                alert('Gagal menyalin otomatis. Silakan blok teksnya dan salin manual.');
+                alert('Gagal menyalin otomatis. Silakan salin manual.');
             }
         } catch (err) {
             alert('Browser tidak mendukung copy otomatis. Silakan salin manual.');
@@ -289,5 +318,4 @@
 </script>
 
 </body>
-  </html>
-
+</html>
